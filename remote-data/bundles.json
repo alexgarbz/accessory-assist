@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "environment": "production",
-  "generatedAt": "2026-07-20T09:00:00Z",
+  "environment": "staging",
+  "generatedAt": "2026-07-24T16:30:00Z",
   "bundles": [
     {
       "id": "b_delivery_my",
@@ -14,9 +14,11 @@
         "p_my_ext_mud_flaps",
         "p_un_car_wash_kit"
       ],
-      "bundlePrice": 480.00,
+      "bundlePrice": 480.0,
       "imageName": "b_delivery_my.png",
-      "compatibleVehicles": ["model_y"],
+      "compatibleVehicles": [
+        "model_y"
+      ],
       "status": "active",
       "featured": true
     },
@@ -31,9 +33,11 @@
         "p_m3_ext_mud_flaps",
         "p_un_car_wash_kit"
       ],
-      "bundlePrice": 460.00,
+      "bundlePrice": 460.0,
       "imageName": "b_delivery_m3.png",
-      "compatibleVehicles": ["model_3"],
+      "compatibleVehicles": [
+        "model_3"
+      ],
       "status": "active",
       "featured": true
     },
@@ -47,9 +51,11 @@
         "p_un_chg_mobile_conn",
         "p_un_chg_j1772"
       ],
-      "bundlePrice": 675.00,
+      "bundlePrice": 675.0,
       "imageName": "b_charging_home.png",
-      "compatibleVehicles": ["universal"],
+      "compatibleVehicles": [
+        "universal"
+      ],
       "status": "active",
       "featured": true
     },
@@ -64,9 +70,11 @@
         "p_un_whl_tyre_repair",
         "p_un_car_wheel_clean"
       ],
-      "bundlePrice": 395.00,
+      "bundlePrice": 395.0,
       "imageName": "b_winter_my.png",
-      "compatibleVehicles": ["model_y"],
+      "compatibleVehicles": [
+        "model_y"
+      ],
       "status": "active",
       "featured": false
     },
@@ -80,11 +88,31 @@
         "p_un_car_wheel_clean",
         "p_un_car_paint_repair"
       ],
-      "bundlePrice": 220.00,
+      "bundlePrice": 220.0,
       "imageName": "b_care_universal.png",
-      "compatibleVehicles": ["universal"],
+      "compatibleVehicles": [
+        "universal"
+      ],
       "status": "active",
       "featured": false
+    },
+    {
+      "id": "b_ct_launch",
+      "name": "Cybertruck Launch Kit",
+      "summary": "Bed protection, vault tie-downs and vehicle care.",
+      "description": "Bundle under test for the Cybertruck delivery flow. Pricing is not approved - staging only.",
+      "productIds": [
+        "p_ct_crg_bed_liner",
+        "p_ct_ext_bed_cover",
+        "p_un_car_wash_kit"
+      ],
+      "bundlePrice": 950.0,
+      "imageName": "b_ct_launch.png",
+      "compatibleVehicles": [
+        "cybertruck"
+      ],
+      "status": "active",
+      "featured": true
     }
   ]
 }

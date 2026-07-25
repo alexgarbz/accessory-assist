@@ -1,8 +1,17 @@
 {
   "schemaVersion": 1,
-  "environment": "production",
-  "generatedAt": "2026-07-20T09:00:00Z",
+  "environment": "staging",
+  "generatedAt": "2026-07-24T16:30:00Z",
   "announcements": [
+    {
+      "id": "a_staging_warning",
+      "title": "Staging catalogue - not approved for sale",
+      "body": "This device is reading test content. Prices and products here are not approved. Switch back to Production in Settings before serving a customer.",
+      "severity": "critical",
+      "startsAt": "2026-07-01T00:00:00Z",
+      "endsAt": "2027-07-01T00:00:00Z",
+      "pinned": true
+    },
     {
       "id": "a_ccs_eligibility",
       "title": "Check CCS adapter eligibility before sale",
