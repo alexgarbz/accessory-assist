@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "environment": "production",
+  "generatedAt": "2026-07-20T09:00:00Z",
+  "announcements": [
+    {
+      "id": "a_ccs_eligibility",
+      "title": "Check CCS adapter eligibility before sale",
+      "body": "Confirm retrofit eligibility in the service portal before selling TSL-UN-CHG-0318. Vehicles built before 2020 may require a hardware retrofit.",
+      "severity": "warning",
+      "startsAt": "2026-07-01T00:00:00Z",
+      "endsAt": "2026-09-30T23:59:59Z",
+      "pinned": true
+    },
+    {
+      "id": "a_pedal_discontinued",
+      "title": "Sport Pedal Set discontinued",
+      "body": "TSL-M3-EXT-0420 is discontinued and cannot be ordered. Remaining floor stock may be sold at the listed price.",
+      "severity": "info",
+      "startsAt": "2026-06-15T00:00:00Z",
+      "endsAt": "2026-12-31T23:59:59Z",
+      "pinned": false
+    },
+    {
+      "id": "a_delivery_kit_push",
+      "title": "Delivery Day Kits are the current focus",
+      "body": "Offer the matching Delivery Day Kit at every handover this quarter. Bundle pricing is already reflected in the catalogue.",
+      "severity": "info",
+      "startsAt": "2026-07-01T00:00:00Z",
+      "endsAt": "2026-09-30T23:59:59Z",
+      "pinned": false
+    }
+  ]
+}
