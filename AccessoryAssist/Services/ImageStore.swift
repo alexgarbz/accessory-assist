@@ -46,18 +46,21 @@ final class ImageStore: ObservableObject {
             if let data = cache.cachedImageData(for: imageName), let image = UIImage(data: data) {
                 return image
             }
-            // Image shipped with the app (seed catalogue).
-            let stem = (imageName as NSString).deletingPathExtension
-            if let bundled = UIImage(named: stem) {
-                return bundled
-            }
             // Network, then persist for offline use.
-            guard let data = try? await fetcher.fetch(source.imageURL(for: imageName)),
-                  let image = UIImage(data: data) else {
-                return nil
+            //
+            // This is attempted before the copy bundled with the app, and the
+            // order matters: replacing artwork by overwriting the file in
+            // images/ is a documented content operation, so a stale image
+            // shipped in the binary must never win over the published one.
+            if let data = try? await fetcher.fetch(source.imageURL(for: imageName)),
+               let image = UIImage(data: data) {
+                cache.storeImage(data, for: imageName)
+                return image
             }
-            cache.storeImage(data, for: imageName)
-            return image
+            // Fall back to the image shipped with the app (seed catalogue), so
+            // a device that has never had a connection still shows something.
+            let stem = (imageName as NSString).deletingPathExtension
+            return UIImage(named: stem)
         }
 
         inFlight[imageName] = task
