@@ -110,6 +110,27 @@ final class CatalogueValidatorTests: XCTestCase {
         }
     }
 
+    func testRealTeslaPartNumbersAreAccepted() {
+        // Part numbers as printed on the item. The letter-coded middle group
+        // (RH, TS, WL, FT) is used across the all-weather liner range.
+        for partNumber in [
+            "1529454-42-H",
+            "1479094-00-B",
+            "2048569-RH-A",
+            "2048569-WL-A",
+            "1819445-70-B",
+            "1859203-00-C"
+        ] {
+            let catalogue = makeCatalogue(products: [makeProduct(sku: partNumber)])
+            let result = validate(catalogue: catalogue)
+            XCTAssertTrue(
+                result.isAcceptable,
+                "Part number \"\(partNumber)\" should be accepted: \(result.errors)"
+            )
+            XCTAssertTrue(Code128.canEncode(partNumber))
+        }
+    }
+
     func testEmptyProductNameIsRejected() {
         let catalogue = makeCatalogue(products: [makeProduct(name: "  ")])
         XCTAssertFalse(validate(catalogue: catalogue).isAcceptable)

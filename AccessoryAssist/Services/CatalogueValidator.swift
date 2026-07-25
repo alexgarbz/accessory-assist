@@ -32,9 +32,13 @@ enum CatalogueValidator {
         var isAcceptable: Bool { errors.isEmpty }
     }
 
-    /// SKUs are uppercase alphanumeric groups separated by hyphens, e.g.
-    /// `TSL-MY-INT-0142`. Kept strict so barcodes stay short and scannable.
-    static let skuPattern = "^[A-Z0-9]{2,5}(-[A-Z0-9]{1,6}){1,4}$"
+    /// SKUs are uppercase alphanumeric groups separated by hyphens.
+    ///
+    /// This accepts both Tesla part numbers as printed on the item and in the
+    /// parts system (`1529454-42-H`, `2048569-RH-A`) and the internal scheme
+    /// used by sample content (`TSL-MY-INT-0142`). Kept bounded so barcodes
+    /// stay short enough to scan from a phone screen.
+    static let skuPattern = "^[A-Z0-9]{2,10}(-[A-Z0-9]{1,6}){1,4}$"
 
     /// Image file extensions the app knows how to decode.
     static let allowedImageExtensions: Set<String> = ["png", "jpg", "jpeg", "heic", "webp"]

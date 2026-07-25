@@ -62,27 +62,34 @@ final class ImageStoreTests: XCTestCase {
         XCTAssertNotNil(image, "The device cache must survive a relaunch")
     }
 
-    func testFallsBackToTheImageBundledWithTheAppWhenOffline() async {
+    /// An image name that genuinely ships inside the app, taken from the seed
+    /// catalogue rather than hard-coded — a content change must not be able to
+    /// break these tests.
+    private func bundledImageName() throws -> String {
+        let seed = try XCTUnwrap(SeedCatalogue.load(), "The app must ship a seed catalogue")
+        return try XCTUnwrap(seed.catalogue.products.first?.imageName)
+    }
+
+    func testFallsBackToTheImageBundledWithTheAppWhenOffline() async throws {
         let store = ImageStore(source: source, fetcher: FailingImageFetcher())
 
-        // This name is part of the seed catalogue shipped in the app bundle.
-        let image = await store.image(named: "p_my_int_liners.png")
+        let image = await store.image(named: try bundledImageName())
 
         XCTAssertNotNil(image, "A device that has never had a connection still shows imagery")
     }
 
-    func testPublishedImageWinsOverTheCopyBundledWithTheApp() async {
+    func testPublishedImageWinsOverTheCopyBundledWithTheApp() async throws {
         // Replacing artwork by overwriting the file in images/ is a documented
         // content operation. If the bundled copy were preferred, that change
         // would never reach a device that shipped with the old image.
+        let name = try bundledImageName()
         let published = makePNG(size: CGSize(width: 7, height: 7))
         let store = ImageStore(source: source, fetcher: StubImageFetcher(data: published))
 
-        let image = await store.image(named: "p_my_int_liners.png")
+        let image = await store.image(named: name)
 
-        let size = try? XCTUnwrap(image).size
-        XCTAssertEqual(size?.width, 7, "The published image must win over the bundled one")
-        XCTAssertNotNil(CatalogueCacheStore(source: source).cachedImageData(for: "p_my_int_liners.png"))
+        XCTAssertEqual(image?.size.width, 7, "The published image must win over the bundled one")
+        XCTAssertNotNil(CatalogueCacheStore(source: source).cachedImageData(for: name))
     }
 
     func testUnresolvableImageReturnsNilRatherThanThrowing() async {
