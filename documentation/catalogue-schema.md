@@ -74,8 +74,12 @@ The id `universal` is reserved: a product listing `universal` fits every
 vehicle. It is published as a vehicle (named "All Vehicles") but is never
 offered as a filter choice.
 
-Current approved ids: `model_s`, `model_3`, `model_x`, `model_y`, `cybertruck`,
-`universal`.
+Current approved ids: `model_s`, `model_3`, `model_x`, `model_y`, `model_y_l`,
+`cybertruck`, `universal`.
+
+`model_y` and `model_y_l` are separate lines: much of the Model Y accessory
+range does not fit Model Y L, and the liner and trunk ranges have distinct part
+numbers for each. Never list both unless the product page says it fits both.
 
 ### categories[]
 
@@ -84,6 +88,11 @@ Current approved ids: `model_s`, `model_3`, `model_x`, `model_y`, `cybertruck`,
 | `id` | string | **yes** | Unique, e.g. `interior`. |
 | `name` | string | **yes** | Display name, e.g. `Interior`. |
 | `order` | int | no | Sort order in the category filter row. |
+
+Current ids: `interior`, `cargo`, `charging`, `exterior`, `wheels`, `care`,
+`apparel`, `lifestyle`. Apparel and lifestyle items are sold from the same
+counter and scan the same way, so they sit in the same catalogue rather than a
+separate one.
 
 ### products[]
 
@@ -108,7 +117,7 @@ Current approved ids: `model_s`, `model_3`, `model_x`, `model_y`, `cybertruck`,
 | Field | Type | Required | Rules |
 | --- | --- | --- | --- |
 | `id` | string | **yes** | **Unique across the catalogue.** Stable forever — favourites and carts on staff devices reference it. Never reuse an id for a different product. |
-| `sku` | string | **yes** | **Unique across the catalogue.** Must match `^[A-Z0-9]{2,5}(-[A-Z0-9]{1,6}){1,4}$` and be Code 128-encodable. This is what the barcode encodes. |
+| `sku` | string | **yes** | **Unique across the catalogue.** Must match `^[A-Z0-9]{2,10}(-[A-Z0-9]{1,6}){1,4}$` and be Code 128-encodable. This is what the barcode encodes, so it must be the code the mPOS terminal expects — normally the Tesla part number as printed on the item (`1529454-42-H`, `2048569-RH-A`). The internal `TSL-MY-INT-0142` scheme is also accepted, for sample content. |
 | `name` | string | **yes** | Non-empty. Shown in rows, cards and scan mode. |
 | `summary` | string | no | One line, shown under the name on product detail. Not shown in rows. |
 | `description` | string | no | Long form. Decoded into `Product.detail` in Swift. Product detail screen only. |

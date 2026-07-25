@@ -20,9 +20,21 @@ trademark is granted by this licence, and none is claimed.
 
 The interface follows design guidance supplied by the copyright holder that is
 inspired by Tesla's published design language. No Tesla proprietary typeface,
-photography, or other asset is included in this repository. All product data,
-imagery and pricing in remote-data/ is invented sample content for
-demonstration and does not represent real Tesla products or prices.
+photography, or other asset is included in this repository.
+
+Catalogue content in remote-data/ is mixed and is described in README.md:
+
+  - Some entries record factual product information (names, part numbers and
+    prices in AUD) observed on Tesla's public Australian online store on
+    25 July 2026. This is factual reference data, is not authorised or supplied
+    by Tesla, and may be out of date. It must be confirmed against Tesla's own
+    systems before any operational use.
+  - The remaining entries, all bundle groupings other than the Home and Mobile
+    Connector Bundle, and every image in remote-data/images/ are invented
+    sample content generated for demonstration.
+
+No product imagery is copied from Tesla. All images are generated placeholders
+produced by scripts/generate_placeholder_images.py.
 
 DISCLAIMER
 

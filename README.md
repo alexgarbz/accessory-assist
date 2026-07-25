@@ -8,8 +8,9 @@ working offline.
 Built with SwiftUI. No third-party dependencies. iOS 17.0+.
 
 > **Unofficial prototype.** Not affiliated with, authorised by or endorsed by
-> Tesla, Inc. All products, prices and imagery in `remote-data/` are invented
-> sample content. See [LICENSE](LICENSE).
+> Tesla, Inc. See [LICENSE](LICENSE) and
+> [Catalogue content](#catalogue-content) for exactly which data is real and
+> which is invented.
 
 ---
 
@@ -38,6 +39,32 @@ detail · Cart · mPOS scan mode · Favourites · Settings · Catalogue status �
 Offline and failed-sync states.
 
 ---
+
+## Catalogue content
+
+The catalogue holds **52 products across 8 categories and 6 vehicle lines**, in
+**AUD**. It is a mix, and the difference matters if anyone is tempted to quote
+from it:
+
+| Part of the catalogue | Provenance |
+| --- | --- |
+| 33 products — charging, Model Y and Model Y L interior/cargo, apparel, lifestyle | Names, **real Tesla part numbers** and AUD prices observed on Tesla's public Australian store (`shop.tesla.com/en_au`) on **25 July 2026** |
+| Home and Mobile Connector Bundle | Real bundle at its listed price (A$1,200) |
+| 19 remaining products (Model S/X liners, roof rack, aero covers, vehicle care, Cybertruck items) | **Invented** sample content |
+| All other bundle groupings and their prices | **Invented** merchandising, priced 10% under the sum of contents |
+| Every image in `remote-data/images/` | **Generated placeholders**, not Tesla photography |
+
+The real entries are factual reference data, not authorised by Tesla, and go out
+of date the moment a price changes. **Confirm against Tesla's own systems before
+any operational use.**
+
+Four all-weather liner part numbers (`2048569-RH-A`, `-TS-A`, `-WL-A`, `-FT-A`)
+are taken from Tesla's asset references rather than a published SKU field; each
+carries a fitment note telling staff to confirm the part number at the counter.
+
+SKUs are the barcode payload, so both formats are accepted and validated: Tesla
+part numbers as printed on the item (`1529454-42-H`, `2048569-RH-A`) and the
+internal scheme used by the sample entries (`TSL-MY-INT-0142`).
 
 ## Repository layout
 
