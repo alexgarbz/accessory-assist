@@ -1,0 +1,41 @@
+name: iOS Tests
+
+# Builds the app and runs the unit tests on every change to the Xcode project
+# or its sources. Catalogue-only changes are handled by validate-catalogue.yml.
+on:
+  push:
+    paths:
+      - "AccessoryAssist/**"
+      - "AccessoryAssist.xcodeproj/**"
+      - ".github/workflows/ios-tests.yml"
+  pull_request:
+    paths:
+      - "AccessoryAssist/**"
+      - "AccessoryAssist.xcodeproj/**"
+      - ".github/workflows/ios-tests.yml"
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Build and test
+    runs-on: macos-15
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Show toolchain
+        run: xcodebuild -version
+
+      - name: Run unit tests
+        run: |
+          set -o pipefail
+          xcodebuild test \
+            -project AccessoryAssist.xcodeproj \
+            -scheme AccessoryAssist \
+            -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest' \
+            CODE_SIGNING_ALLOWED=NO \
+            | xcpretty || xcodebuild test \
+            -project AccessoryAssist.xcodeproj \
+            -scheme AccessoryAssist \
+            -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest' \
+            CODE_SIGNING_ALLOWED=NO

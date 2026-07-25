@@ -1,0 +1,95 @@
+name: Validate Catalogue
+
+# The publishing gate. Any change to catalogue content — on any branch, and on
+# every pull request into main or staging — is validated before it can be
+# merged and served to devices.
+on:
+  push:
+    paths:
+      - "remote-data/**"
+      - "scripts/validate_catalogue.py"
+      - ".github/workflows/validate-catalogue.yml"
+  pull_request:
+    paths:
+      - "remote-data/**"
+      - "scripts/validate_catalogue.py"
+      - ".github/workflows/validate-catalogue.yml"
+  workflow_dispatch:
+
+jobs:
+  validate:
+    name: Validate remote-data
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check JSON is well formed
+        run: |
+          for file in remote-data/version.json remote-data/catalogue.json \
+                      remote-data/bundles.json remote-data/announcements.json; do
+            echo "Parsing $file"
+            python3 -m json.tool "$file" > /dev/null
+          done
+
+      - name: Validate catalogue content
+        run: python3 scripts/validate_catalogue.py remote-data
+
+      - name: Confirm the catalogue version was incremented
+        # A publish that changes content without bumping catalogueVersion will
+        # never reach a device: the app skips the download when the version it
+        # already holds is not older.
+        if: github.event_name == 'pull_request'
+        run: |
+          git fetch --no-tags --depth=1 origin "${{ github.base_ref }}"
+          if git diff --quiet "origin/${{ github.base_ref }}" -- remote-data/catalogue.json \
+                                                                 remote-data/bundles.json \
+                                                                 remote-data/announcements.json; then
+            echo "No content changes; version bump not required."
+            exit 0
+          fi
+          base_version=$(git show "origin/${{ github.base_ref }}:remote-data/version.json" \
+            | python3 -c "import json,sys; print(json.load(sys.stdin)['catalogueVersion'])")
+          head_version=$(python3 -c "import json; print(json.load(open('remote-data/version.json'))['catalogueVersion'])")
+          echo "base catalogueVersion=$base_version, head catalogueVersion=$head_version"
+          if [ "$head_version" -le "$base_version" ]; then
+            echo "::error file=remote-data/version.json::Content changed but catalogueVersion was not incremented ($base_version -> $head_version). Devices will not download this publish."
+            exit 1
+          fi
+
+      - name: Check the environment field matches the branch
+        # main serves approved production content; staging serves test content.
+        # A staging file merged into main with environment "staging" is a
+        # signal that the wrong thing is about to be published.
+        run: |
+          branch="${{ github.base_ref || github.ref_name }}"
+          environment=$(python3 -c "import json; print(json.load(open('remote-data/version.json')).get('environment',''))")
+          echo "branch=$branch environment=$environment"
+          if [ "$branch" = "main" ] && [ "$environment" != "production" ]; then
+            echo "::error file=remote-data/version.json::main must publish environment \"production\", found \"$environment\"."
+            exit 1
+          fi
+          if [ "$branch" = "staging" ] && [ "$environment" != "staging" ]; then
+            echo "::error file=remote-data/version.json::staging must publish environment \"staging\", found \"$environment\"."
+            exit 1
+          fi
+
+      - name: Summarise
+        if: always()
+        run: |
+          {
+            echo "### Catalogue validation"
+            echo ""
+            echo "| File | Size |"
+            echo "| --- | --- |"
+            for file in remote-data/*.json; do
+              echo "| $file | $(wc -c < "$file") bytes |"
+            done
+            echo ""
+            echo "Images: $(ls -1 remote-data/images | wc -l)"
+          } >> "$GITHUB_STEP_SUMMARY"
