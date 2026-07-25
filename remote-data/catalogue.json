@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "environment": "staging",
-  "generatedAt": "2026-07-24T16:30:00Z",
-  "currency": "USD",
+  "generatedAt": "2026-07-25T13:40:00Z",
+  "currency": "AUD",
   "vehicles": [
     {
       "id": "model_s",
@@ -27,12 +27,17 @@
     {
       "id": "cybertruck",
       "name": "Cybertruck",
+      "order": 6
+    },
+    {
+      "id": "model_y_l",
+      "name": "Model Y L",
       "order": 5
     },
     {
       "id": "universal",
       "name": "All Vehicles",
-      "order": 6
+      "order": 7
     }
   ],
   "categories": [
@@ -65,30 +70,19 @@
       "id": "care",
       "name": "Vehicle Care",
       "order": 6
+    },
+    {
+      "id": "apparel",
+      "name": "Apparel",
+      "order": 7
+    },
+    {
+      "id": "lifestyle",
+      "name": "Lifestyle",
+      "order": 8
     }
   ],
   "products": [
-    {
-      "id": "p_my_int_liners",
-      "sku": "TSL-MY-INT-0142",
-      "name": "Model Y All-Weather Interior Liners",
-      "summary": "Front, rear and trunk liners moulded to the Model Y floor pan.",
-      "description": "Laser-measured thermoplastic liners covering the front footwells, rear footwells and rear trunk. Raised outer lip contains spills and debris. Removable for rinsing. Fits all Model Y build years from 2020 onward.",
-      "price": 235.0,
-      "categoryId": "interior",
-      "compatibleVehicles": [
-        "model_y"
-      ],
-      "imageName": "p_my_int_liners.png",
-      "status": "active",
-      "featured": true,
-      "fitNotes": "Fits 5-seat and 7-seat configurations. Third-row liners sold separately.",
-      "tags": [
-        "liners",
-        "floor mats",
-        "weather"
-      ]
-    },
     {
       "id": "p_m3_int_liners",
       "sku": "TSL-M3-INT-0138",
@@ -147,26 +141,6 @@
       "tags": [
         "liners",
         "floor mats"
-      ]
-    },
-    {
-      "id": "p_my_int_sunshade",
-      "sku": "TSL-MY-INT-0150",
-      "name": "Model Y Glass Roof Sunshade",
-      "summary": "Two-piece mesh sunshade for the fixed glass roof.",
-      "description": "Reduces cabin heat load and direct sunlight through the panoramic glass roof. Installs into the existing roof channel without tools. Folds for storage under the trunk floor.",
-      "price": 105.0,
-      "categoryId": "interior",
-      "compatibleVehicles": [
-        "model_y"
-      ],
-      "imageName": "p_my_int_sunshade.png",
-      "status": "active",
-      "featured": false,
-      "tags": [
-        "sunshade",
-        "roof",
-        "summer"
       ]
     },
     {
@@ -232,26 +206,6 @@
       ]
     },
     {
-      "id": "p_my_crg_cargo_liner",
-      "sku": "TSL-MY-CRG-0210",
-      "name": "Model Y Cargo Liner",
-      "summary": "Moulded rear cargo liner with raised edges.",
-      "description": "Covers the rear cargo floor and sub-trunk lid. Raised perimeter contains up to two litres of liquid. Fits with the load floor in either position.",
-      "price": 105.0,
-      "categoryId": "cargo",
-      "compatibleVehicles": [
-        "model_y"
-      ],
-      "imageName": "p_my_crg_cargo_liner.png",
-      "status": "active",
-      "featured": false,
-      "tags": [
-        "cargo",
-        "trunk",
-        "liner"
-      ]
-    },
-    {
       "id": "p_m3_crg_trunk_mat",
       "sku": "TSL-M3-CRG-0205",
       "name": "Model 3 Trunk Mat",
@@ -289,67 +243,6 @@
         "cargo",
         "bed",
         "vault"
-      ]
-    },
-    {
-      "id": "p_un_chg_mobile_conn",
-      "sku": "TSL-UN-CHG-0301",
-      "name": "Mobile Connector Bundle",
-      "summary": "20 ft mobile connector with two adapters.",
-      "description": "Portable charging cable supplied with the NEMA 5-15 and NEMA 14-50 adapters and a storage bag. Delivers up to 32 A on a 14-50 outlet.",
-      "price": 230.0,
-      "categoryId": "charging",
-      "compatibleVehicles": [
-        "universal"
-      ],
-      "imageName": "p_un_chg_mobile_conn.png",
-      "status": "active",
-      "featured": true,
-      "tags": [
-        "charging",
-        "mobile connector",
-        "cable"
-      ]
-    },
-    {
-      "id": "p_un_chg_wall_conn",
-      "sku": "TSL-UN-CHG-0305",
-      "name": "Wall Connector",
-      "summary": "Hardwired home charger with a 24 ft cable.",
-      "description": "Wi-Fi connected hardwired charger delivering up to 44 miles of range per hour on a 60 A circuit. Indoor and outdoor rated. Requires a licensed electrician for installation.",
-      "price": 450.0,
-      "categoryId": "charging",
-      "compatibleVehicles": [
-        "universal"
-      ],
-      "imageName": "p_un_chg_wall_conn.png",
-      "status": "active",
-      "featured": true,
-      "fitNotes": "Installation is not included. Refer the customer to the certified installer list.",
-      "tags": [
-        "charging",
-        "home",
-        "wall connector"
-      ]
-    },
-    {
-      "id": "p_un_chg_j1772",
-      "sku": "TSL-UN-CHG-0312",
-      "name": "J1772 Charging Adapter",
-      "summary": "Adapter for public J1772 charging stations.",
-      "description": "Connects the vehicle charge port to any J1772 station at up to 80 A. Stores in the front trunk or glovebox.",
-      "price": 50.0,
-      "categoryId": "charging",
-      "compatibleVehicles": [
-        "universal"
-      ],
-      "imageName": "p_un_chg_j1772.png",
-      "status": "active",
-      "featured": false,
-      "tags": [
-        "charging",
-        "adapter",
-        "j1772"
       ]
     },
     {
@@ -517,26 +410,6 @@
       ]
     },
     {
-      "id": "p_un_whl_tyre_repair",
-      "sku": "TSL-UN-WHL-0612",
-      "name": "Tyre Repair Kit",
-      "summary": "Compressor and sealant for temporary repairs.",
-      "description": "12 V compressor with an integrated sealant canister for temporary roadside repair of tread punctures. Stores in the front trunk.",
-      "price": 55.0,
-      "categoryId": "wheels",
-      "compatibleVehicles": [
-        "universal"
-      ],
-      "imageName": "p_un_whl_tyre_repair.png",
-      "status": "active",
-      "featured": false,
-      "tags": [
-        "tyre",
-        "repair",
-        "roadside"
-      ]
-    },
-    {
       "id": "p_un_car_wash_kit",
       "sku": "TSL-UN-CAR-0501",
       "name": "Vehicle Care Wash Kit",
@@ -598,11 +471,731 @@
       ]
     },
     {
+      "id": "p_chg_wall_connector_gen3",
+      "sku": "1529454-42-H",
+      "name": "Gen 3 Wall Connector - 7.3m",
+      "summary": "Hardwired home charger with a 7.3 m cable.",
+      "description": "Gen 3 Wall Connector with a 7.3 m (24 ft) cable. Wi-Fi connected, indoor and outdoor rated. Requires installation by a licensed electrician, quoted separately.",
+      "price": 750.0,
+      "categoryId": "charging",
+      "compatibleVehicles": [
+        "universal"
+      ],
+      "imageName": "p_chg_wall_connector_gen3.png",
+      "status": "active",
+      "featured": true,
+      "fitNotes": "Installation is not included. Refer the customer to the certified installer list.",
+      "tags": [
+        "charging",
+        "home",
+        "wall connector",
+        "gen 3"
+      ]
+    },
+    {
+      "id": "p_chg_mobile_connector",
+      "sku": "1479094-00-B",
+      "name": "Mobile Connector",
+      "summary": "Portable charging cable for domestic outlets.",
+      "description": "Mobile Connector for charging from a domestic outlet. Supplied with the adapter set for the local market. Stores in the front trunk.",
+      "price": 550.0,
+      "categoryId": "charging",
+      "compatibleVehicles": [
+        "universal"
+      ],
+      "imageName": "p_chg_mobile_connector.png",
+      "status": "active",
+      "featured": true,
+      "tags": [
+        "charging",
+        "mobile connector",
+        "cable",
+        "portable"
+      ]
+    },
+    {
+      "id": "p_chg_mennekes_type2_75m",
+      "sku": "1039810-00-A",
+      "name": "MENNEKES Type 2 Adapter - 7.5m",
+      "summary": "7.5 m Type 2 cable for public AC charging.",
+      "description": "MENNEKES Type 2 to Tesla adapter cable, 7.5 m, for public and destination AC charging stations.",
+      "price": 310.0,
+      "categoryId": "charging",
+      "compatibleVehicles": [
+        "universal"
+      ],
+      "imageName": "p_chg_mennekes_type2_75m.png",
+      "status": "active",
+      "featured": false,
+      "tags": [
+        "charging",
+        "adapter",
+        "type 2",
+        "mennekes",
+        "public"
+      ]
+    },
+    {
+      "id": "p_my_aw_interior_liners",
+      "sku": "2048569-RH-A",
+      "name": "Model Y All-Weather Interior Liners",
+      "summary": "First and second row all-weather liners.",
+      "description": "Injection moulded thermoplastic elastomer liners with vertical walls and inlaid aluminium accents. Includes driver, passenger and second-row liners. 100% recyclable and free of cadmium, lead, latex and PVC.",
+      "price": 360.0,
+      "categoryId": "interior",
+      "compatibleVehicles": [
+        "model_y"
+      ],
+      "imageName": "p_my_aw_interior_liners.png",
+      "status": "active",
+      "featured": true,
+      "fitNotes": "Fits Model Y produced 2025 onward. Not compatible with Model Y L. Part number taken from the Tesla asset reference, not from a published SKU field. Confirm the part number at the counter before scanning.",
+      "tags": [
+        "liners",
+        "all-weather",
+        "floor mats",
+        "interior"
+      ]
+    },
+    {
+      "id": "p_my_cooler",
+      "sku": "2065448-00-A",
+      "name": "Model Y/YL Cooler",
+      "summary": "Fitted cooler for the rear cargo area.",
+      "description": "Insulated cooler shaped to the Model Y cargo area. Holds its position with the load floor in either setting.",
+      "price": 485.0,
+      "categoryId": "interior",
+      "compatibleVehicles": [
+        "model_y",
+        "model_y_l"
+      ],
+      "imageName": "p_my_cooler.png",
+      "status": "active",
+      "featured": false,
+      "fitNotes": "For Model Y Premium and Performance, and Model Y built 16/2/2020 - 23/2/2025.",
+      "tags": [
+        "cooler",
+        "cargo",
+        "travel",
+        "camping"
+      ]
+    },
+    {
+      "id": "p_my_air_mattress",
+      "sku": "2013118-00-A",
+      "name": "Model Y Air Mattress",
+      "summary": "Inflatable mattress shaped to the rear footwell and cargo floor.",
+      "description": "Air mattress cut to the Model Y interior with the rear seats folded. Inflates from the vehicle's 12 V outlet. Packs into the supplied bag.",
+      "price": 375.0,
+      "categoryId": "interior",
+      "compatibleVehicles": [
+        "model_y"
+      ],
+      "imageName": "p_my_air_mattress.png",
+      "status": "active",
+      "featured": false,
+      "tags": [
+        "mattress",
+        "camping",
+        "camp mode",
+        "travel"
+      ]
+    },
+    {
+      "id": "p_myl_air_mattress",
+      "sku": "2256876-00-A",
+      "name": "Model Y L Air Mattress",
+      "summary": "Inflatable mattress shaped for Model Y L.",
+      "description": "Air mattress cut to the Model Y L interior with the rear seats folded. Inflates from the vehicle's 12 V outlet.",
+      "price": 300.0,
+      "categoryId": "interior",
+      "compatibleVehicles": [
+        "model_y_l"
+      ],
+      "imageName": "p_myl_air_mattress.png",
+      "status": "active",
+      "featured": false,
+      "tags": [
+        "mattress",
+        "camping",
+        "camp mode",
+        "travel"
+      ]
+    },
+    {
+      "id": "p_my_console_trays",
+      "sku": "1977818-00-C",
+      "name": "Model Y Center Console Trays",
+      "summary": "Drop-in tray set for the centre console bin.",
+      "description": "Tray set that divides the centre console bin for smaller items. Lifts out for cleaning.",
+      "price": 60.0,
+      "categoryId": "interior",
+      "compatibleVehicles": [
+        "model_y"
+      ],
+      "imageName": "p_my_console_trays.png",
+      "status": "active",
+      "featured": false,
+      "fitNotes": "For Model Y Premium and Performance.",
+      "tags": [
+        "console",
+        "storage",
+        "trays",
+        "organiser"
+      ]
+    },
+    {
+      "id": "p_my_double_console_tray",
+      "sku": "2166861-00-A",
+      "name": "Model Y / Model Y L Double-layer Centre Console Tray",
+      "summary": "Two-level tray for the centre console bin.",
+      "description": "Double-layer tray that adds a second storage level inside the centre console bin. The upper tray slides for access to the lower level.",
+      "price": 50.0,
+      "categoryId": "interior",
+      "compatibleVehicles": [
+        "model_y",
+        "model_y_l"
+      ],
+      "imageName": "p_my_double_console_tray.png",
+      "status": "active",
+      "featured": false,
+      "fitNotes": "For Model Y Premium and Performance.",
+      "tags": [
+        "console",
+        "storage",
+        "trays",
+        "organiser"
+      ]
+    },
+    {
+      "id": "p_my_sunshade_glass_roof",
+      "sku": "2073497-00-A",
+      "name": "Model Y Sunshades - Glass Roof",
+      "summary": "Mesh sunshade set for the fixed glass roof.",
+      "description": "Lightweight mesh sunshades that reduce cabin heat load through the glass roof. Install into the existing roof channel without tools and fold for storage.",
+      "price": 180.0,
+      "categoryId": "interior",
+      "compatibleVehicles": [
+        "model_y"
+      ],
+      "imageName": "p_my_sunshade_glass_roof.png",
+      "status": "active",
+      "featured": true,
+      "tags": [
+        "sunshade",
+        "roof",
+        "summer",
+        "heat"
+      ]
+    },
+    {
+      "id": "p_my_sunshade_liftgate",
+      "sku": "2073498-00-A",
+      "name": "Model Y Sunshades - Rear Liftgate",
+      "summary": "Mesh sunshade for the rear liftgate glass.",
+      "description": "Lightweight mesh sunshade for the rear liftgate glass. Reduces heat load in the cargo area and cabin.",
+      "price": 120.0,
+      "categoryId": "interior",
+      "compatibleVehicles": [
+        "model_y"
+      ],
+      "imageName": "p_my_sunshade_liftgate.png",
+      "status": "active",
+      "featured": false,
+      "tags": [
+        "sunshade",
+        "liftgate",
+        "summer",
+        "heat"
+      ]
+    },
+    {
+      "id": "p_my_front_sunshade",
+      "sku": "2194728-00-A",
+      "name": "Model Y / Model Y L Front Sunshade",
+      "summary": "Folding windscreen sunshade.",
+      "description": "Folding sunshade for the windscreen. Reduces cabin temperature when parked and collapses for storage under the trunk floor.",
+      "price": 80.0,
+      "categoryId": "interior",
+      "compatibleVehicles": [
+        "model_y",
+        "model_y_l"
+      ],
+      "imageName": "p_my_front_sunshade.png",
+      "status": "active",
+      "featured": false,
+      "tags": [
+        "sunshade",
+        "windscreen",
+        "summer",
+        "heat"
+      ]
+    },
+    {
+      "id": "p_my_projection_lights",
+      "sku": "2097852-00-A",
+      "name": "Model Y/Y L Projection Lights",
+      "summary": "Replacement puddle lamp projectors.",
+      "description": "Projection light units that replace the standard puddle lamps in the front doors. Fitted without tools.",
+      "price": 60.0,
+      "categoryId": "interior",
+      "compatibleVehicles": [
+        "model_y",
+        "model_y_l"
+      ],
+      "imageName": "p_my_projection_lights.png",
+      "status": "active",
+      "featured": false,
+      "tags": [
+        "lights",
+        "projection",
+        "puddle",
+        "doors"
+      ]
+    },
+    {
+      "id": "p_headrest_pillow",
+      "sku": "2057183-00-A",
+      "name": "Model 3/Y/Y L Headrest Pillow",
+      "summary": "Magnetic headrest cushion.",
+      "description": "Headrest pillow that attaches to the front seat headrest. Removable cover.",
+      "price": 60.0,
+      "categoryId": "interior",
+      "compatibleVehicles": [
+        "model_3",
+        "model_y",
+        "model_y_l"
+      ],
+      "imageName": "p_headrest_pillow.png",
+      "status": "active",
+      "featured": false,
+      "tags": [
+        "pillow",
+        "headrest",
+        "comfort",
+        "seat"
+      ]
+    },
+    {
+      "id": "p_lumbar_pillow",
+      "sku": "2057184-00-A",
+      "name": "Model 3/Y/Y L Lumbar Pillow",
+      "summary": "Lower back support cushion.",
+      "description": "Lumbar pillow for the front seats. Strap mounted, with a removable cover.",
+      "price": 70.0,
+      "categoryId": "interior",
+      "compatibleVehicles": [
+        "model_3",
+        "model_y",
+        "model_y_l"
+      ],
+      "imageName": "p_lumbar_pillow.png",
+      "status": "active",
+      "featured": false,
+      "tags": [
+        "pillow",
+        "lumbar",
+        "comfort",
+        "seat"
+      ]
+    },
+    {
+      "id": "p_key_fob",
+      "sku": "1819445-70-B",
+      "name": "Model 3/Y/YL Key Fob",
+      "summary": "Physical key fob with lock, unlock and boot controls.",
+      "description": "Key fob for customers who prefer a physical key to the phone app. Must be paired to the vehicle before handover.",
+      "price": 270.0,
+      "categoryId": "interior",
+      "compatibleVehicles": [
+        "model_3",
+        "model_y",
+        "model_y_l"
+      ],
+      "imageName": "p_key_fob.png",
+      "status": "active",
+      "featured": true,
+      "fitNotes": "Pair the fob to the vehicle before handover. One fob per pairing session.",
+      "tags": [
+        "key",
+        "fob",
+        "remote",
+        "keyfob"
+      ]
+    },
+    {
+      "id": "p_myl_door_sill_guard",
+      "sku": "2193128-00-A",
+      "name": "Model Y L All-Weather Rear Door Sill Guard",
+      "summary": "Moulded sill protection for the rear doors.",
+      "description": "All-weather guard that protects the rear door sills from scuffing and grit. Removable for cleaning.",
+      "price": 60.0,
+      "categoryId": "interior",
+      "compatibleVehicles": [
+        "model_y_l"
+      ],
+      "imageName": "p_myl_door_sill_guard.png",
+      "status": "active",
+      "featured": false,
+      "tags": [
+        "sill",
+        "guard",
+        "protection",
+        "doors"
+      ]
+    },
+    {
+      "id": "p_my_aw_trunk_seatback_liner",
+      "sku": "2048569-TS-A",
+      "name": "Model Y All-Weather Rear Trunk + Seatback Liner",
+      "summary": "Rear trunk liner with seatback protection.",
+      "description": "All-weather liner covering the rear trunk floor and the back of the folded rear seats. Raised edges contain spills.",
+      "price": 330.0,
+      "categoryId": "cargo",
+      "compatibleVehicles": [
+        "model_y"
+      ],
+      "imageName": "p_my_aw_trunk_seatback_liner.png",
+      "status": "active",
+      "featured": false,
+      "fitNotes": "Part number taken from the Tesla asset reference, not from a published SKU field. Confirm the part number at the counter before scanning.",
+      "tags": [
+        "liner",
+        "trunk",
+        "cargo",
+        "all-weather"
+      ]
+    },
+    {
+      "id": "p_my_aw_rear_well_liner",
+      "sku": "2048569-WL-A",
+      "name": "Model Y All-Weather Rear Well Liner",
+      "summary": "Liner for the under-floor rear well.",
+      "description": "All-weather liner for the sub-trunk well. Lifts out for rinsing.",
+      "price": 140.0,
+      "categoryId": "cargo",
+      "compatibleVehicles": [
+        "model_y"
+      ],
+      "imageName": "p_my_aw_rear_well_liner.png",
+      "status": "active",
+      "featured": false,
+      "fitNotes": "Part number taken from the Tesla asset reference, not from a published SKU field. Confirm the part number at the counter before scanning.",
+      "tags": [
+        "liner",
+        "well",
+        "cargo",
+        "all-weather"
+      ]
+    },
+    {
+      "id": "p_my_aw_front_trunk_liner",
+      "sku": "2048569-FT-A",
+      "name": "Model Y All-Weather Front Trunk Liner",
+      "summary": "Liner for the front trunk.",
+      "description": "All-weather liner shaped to the front trunk. Raised edges contain spills and loose items.",
+      "price": 119.0,
+      "categoryId": "cargo",
+      "compatibleVehicles": [
+        "model_y"
+      ],
+      "imageName": "p_my_aw_front_trunk_liner.png",
+      "status": "active",
+      "featured": false,
+      "fitNotes": "Part number taken from the Tesla asset reference, not from a published SKU field. Confirm the part number at the counter before scanning.",
+      "tags": [
+        "liner",
+        "frunk",
+        "front trunk",
+        "all-weather"
+      ]
+    },
+    {
+      "id": "p_myl_aw_trunk_seatback_liner",
+      "sku": "2166860-00-B",
+      "name": "Model Y L All-Weather Rear Trunk + Seatback Liner",
+      "summary": "Rear trunk and seatback liner for Model Y L.",
+      "description": "All-weather liner covering the Model Y L rear trunk floor and folded seatbacks.",
+      "price": 230.0,
+      "categoryId": "cargo",
+      "compatibleVehicles": [
+        "model_y_l"
+      ],
+      "imageName": "p_myl_aw_trunk_seatback_liner.png",
+      "status": "active",
+      "featured": false,
+      "tags": [
+        "liner",
+        "trunk",
+        "cargo",
+        "all-weather"
+      ]
+    },
+    {
+      "id": "p_myl_trunk_storage_bins",
+      "sku": "2166862-00-A",
+      "name": "Model Y L Trunk Storage Bins",
+      "summary": "Removable bins for the rear trunk.",
+      "description": "Storage bins that divide the Model Y L rear trunk and stop smaller items moving in transit.",
+      "price": 80.0,
+      "categoryId": "cargo",
+      "compatibleVehicles": [
+        "model_y_l"
+      ],
+      "imageName": "p_myl_trunk_storage_bins.png",
+      "status": "active",
+      "featured": false,
+      "tags": [
+        "storage",
+        "bins",
+        "trunk",
+        "cargo"
+      ]
+    },
+    {
+      "id": "p_my_front_mud_flaps",
+      "sku": "1634443-00-A",
+      "name": "Model Y Front Mud Flaps",
+      "summary": "Front mud flaps, no drilling required.",
+      "description": "Moulded front mud flaps that mount to the existing wheel arch fasteners. Reduce paint chipping and underbody spray.",
+      "price": 54.0,
+      "categoryId": "exterior",
+      "compatibleVehicles": [
+        "model_y"
+      ],
+      "imageName": "p_my_front_mud_flaps.png",
+      "status": "active",
+      "featured": false,
+      "tags": [
+        "mud flaps",
+        "exterior",
+        "protection",
+        "front"
+      ]
+    },
+    {
+      "id": "p_air_compressor_tyre_kit",
+      "sku": "1934882-00-A",
+      "name": "Air Compressor + Tyre Repair Kit 3.0",
+      "summary": "12 V compressor with sealant for roadside repairs.",
+      "description": "Air compressor and sealant canister for temporary roadside repair of tread punctures. Stores in the front trunk.",
+      "price": 180.0,
+      "categoryId": "wheels",
+      "compatibleVehicles": [
+        "universal"
+      ],
+      "imageName": "p_air_compressor_tyre_kit.png",
+      "status": "active",
+      "featured": true,
+      "fitNotes": "For Model S, X, 3 and Model Y Premium and Performance.",
+      "tags": [
+        "tyre",
+        "repair",
+        "compressor",
+        "roadside",
+        "puncture"
+      ]
+    },
+    {
+      "id": "p_hat_cybertruck_corduroy",
+      "sku": "2166154-00-A",
+      "name": "Cybertruck Off-Road Corduroy Hat",
+      "summary": "Corduroy cap, Tactical Green.",
+      "description": "Six-panel corduroy cap with Cybertruck off-road embroidery. One size fits all with an adjustable strap.",
+      "price": 70.0,
+      "categoryId": "apparel",
+      "compatibleVehicles": [
+        "universal"
+      ],
+      "imageName": "p_hat_cybertruck_corduroy.png",
+      "status": "active",
+      "featured": false,
+      "tags": [
+        "hat",
+        "cap",
+        "cybertruck",
+        "corduroy",
+        "green"
+      ]
+    },
+    {
+      "id": "p_hat_tempest_rope_black",
+      "sku": "1860530-00-A",
+      "name": "Tempest Rope Hat - Black",
+      "summary": "Rope-front cap, Black.",
+      "description": "Structured rope cap with an embroidered wordmark. One size fits all with an adjustable strap.",
+      "price": 70.0,
+      "categoryId": "apparel",
+      "compatibleVehicles": [
+        "universal"
+      ],
+      "imageName": "p_hat_tempest_rope_black.png",
+      "status": "active",
+      "featured": false,
+      "tags": [
+        "hat",
+        "cap",
+        "rope",
+        "black"
+      ]
+    },
+    {
+      "id": "p_hat_tempest_rope_olive",
+      "sku": "1860532-00-A",
+      "name": "Tempest Rope Hat - Olive Green",
+      "summary": "Rope-front cap, Olive Green.",
+      "description": "Structured rope cap with an embroidered wordmark. One size fits all with an adjustable strap.",
+      "price": 70.0,
+      "categoryId": "apparel",
+      "compatibleVehicles": [
+        "universal"
+      ],
+      "imageName": "p_hat_tempest_rope_olive.png",
+      "status": "active",
+      "featured": false,
+      "tags": [
+        "hat",
+        "cap",
+        "rope",
+        "olive",
+        "green"
+      ]
+    },
+    {
+      "id": "p_hat_tempest_rope_grey",
+      "sku": "1860531-00-A",
+      "name": "Tempest Rope Hat - Light Gray",
+      "summary": "Rope-front cap, Light Gray.",
+      "description": "Structured rope cap with an embroidered wordmark. One size fits all with an adjustable strap.",
+      "price": 70.0,
+      "categoryId": "apparel",
+      "compatibleVehicles": [
+        "universal"
+      ],
+      "imageName": "p_hat_tempest_rope_grey.png",
+      "status": "active",
+      "featured": false,
+      "tags": [
+        "hat",
+        "cap",
+        "rope",
+        "grey",
+        "gray"
+      ]
+    },
+    {
+      "id": "p_hat_plaid_track_pack",
+      "sku": "1974062-00-A",
+      "name": "Plaid Track Pack Hat - Black",
+      "summary": "Track Pack cap, Black.",
+      "description": "Six-panel cap with Plaid Track Pack embroidery. One size fits all with an adjustable strap.",
+      "price": 65.0,
+      "categoryId": "apparel",
+      "compatibleVehicles": [
+        "universal"
+      ],
+      "imageName": "p_hat_plaid_track_pack.png",
+      "status": "active",
+      "featured": false,
+      "tags": [
+        "hat",
+        "cap",
+        "plaid",
+        "track pack",
+        "black"
+      ]
+    },
+    {
+      "id": "p_hat_six_panel_wordmark",
+      "sku": "1657915-00-A",
+      "name": "Six Panel Large Wordmark Hat - Black",
+      "summary": "Six-panel cap with large wordmark, Black.",
+      "description": "Six-panel cap with a large embroidered wordmark. One size fits most with an adjustable strap.",
+      "price": 50.0,
+      "categoryId": "apparel",
+      "compatibleVehicles": [
+        "universal"
+      ],
+      "imageName": "p_hat_six_panel_wordmark.png",
+      "status": "active",
+      "featured": true,
+      "tags": [
+        "hat",
+        "cap",
+        "wordmark",
+        "black"
+      ]
+    },
+    {
+      "id": "p_cup_on_the_road_white",
+      "sku": "1859203-00-C",
+      "name": "On the Road Cup - Matte White",
+      "summary": "Insulated travel cup, Matte White.",
+      "description": "Double-walled stainless travel cup sized for the vehicle cup holders. Hand wash only.",
+      "price": 50.0,
+      "categoryId": "lifestyle",
+      "compatibleVehicles": [
+        "universal"
+      ],
+      "imageName": "p_cup_on_the_road_white.png",
+      "status": "active",
+      "featured": false,
+      "tags": [
+        "cup",
+        "travel",
+        "drinkware",
+        "white"
+      ]
+    },
+    {
+      "id": "p_cup_on_the_road_black",
+      "sku": "1859202-00-C",
+      "name": "On the Road Cup - Matte Black",
+      "summary": "Insulated travel cup, Matte Black.",
+      "description": "Double-walled stainless travel cup sized for the vehicle cup holders. Hand wash only.",
+      "price": 50.0,
+      "categoryId": "lifestyle",
+      "compatibleVehicles": [
+        "universal"
+      ],
+      "imageName": "p_cup_on_the_road_black.png",
+      "status": "active",
+      "featured": false,
+      "tags": [
+        "cup",
+        "travel",
+        "drinkware",
+        "black"
+      ]
+    },
+    {
+      "id": "p_cup_on_the_road_grey",
+      "sku": "2076490-00-A",
+      "name": "On the Road Cup - Light Gray",
+      "summary": "Insulated travel cup, Light Gray.",
+      "description": "Double-walled stainless travel cup sized for the vehicle cup holders. Hand wash only.",
+      "price": 50.0,
+      "categoryId": "lifestyle",
+      "compatibleVehicles": [
+        "universal"
+      ],
+      "imageName": "p_cup_on_the_road_grey.png",
+      "status": "active",
+      "featured": false,
+      "tags": [
+        "cup",
+        "travel",
+        "drinkware",
+        "grey",
+        "gray"
+      ]
+    },
+    {
       "id": "p_my_int_console_tray",
       "sku": "TSL-MY-INT-0175",
       "name": "Model Y Centre Console Organiser",
       "summary": "Removable tray set for the centre console bin.",
-      "description": "Two-piece tray that divides the console bin into a coin well, a cable channel and a card slot. Lifts out for cleaning. Not yet released - do not sell.",
+      "description": "Two-piece tray that divides the console bin into a coin well, a cable channel and a card slot. Not yet released - do not sell.",
       "price": 95.0,
       "categoryId": "interior",
       "compatibleVehicles": [

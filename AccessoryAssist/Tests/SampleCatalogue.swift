@@ -9,13 +9,25 @@ import Foundation
 /// happens to contain today.
 enum SampleCatalogue {
 
+    /// A cross-section of the SKU formats the catalogue actually publishes:
+    /// Tesla part numbers as printed on the item, including the letter-coded
+    /// variants used by the liner range, alongside the internal scheme used by
+    /// the remaining sample content.
     static let skus = [
-        "TSL-MY-INT-0142",
+        // Tesla part numbers
+        "1529454-42-H",
+        "1479094-00-B",
+        "1039810-00-A",
+        "2048569-RH-A",
+        "2048569-TS-A",
+        "2073497-00-A",
+        "1819445-70-B",
+        "1859203-00-C",
+        "2166154-00-A",
+        "1934882-00-A",
+        // Internal scheme
         "TSL-M3-INT-0138",
         "TSL-MS-INT-0120",
-        "TSL-MX-INT-0125",
-        "TSL-UN-CHG-0301",
-        "TSL-UN-CHG-0305",
         "TSL-CT-CRG-0220",
         "TSL-MY-WHL-0601"
     ]

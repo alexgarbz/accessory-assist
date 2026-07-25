@@ -2,12 +2,12 @@
   "schemaVersion": 1,
   "catalogueVersion": 14,
   "environment": "staging",
-  "publishedAt": "2026-07-24T16:30:00Z",
+  "publishedAt": "2026-07-25T13:40:00Z",
   "minimumAppBuild": 1,
   "files": {
     "catalogue": "catalogue.json",
     "bundles": "bundles.json",
     "announcements": "announcements.json"
   },
-  "notes": "Staging: Cybertruck launch kit under test, two upcoming accessories, Wall Connector price test at 450."
+  "notes": "Staging: Cybertruck launch kit under test, two upcoming accessories, Gen 3 Wall Connector price test at 750."
 }

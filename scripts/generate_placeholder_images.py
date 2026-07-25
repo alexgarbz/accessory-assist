@@ -86,6 +86,14 @@ def shapes_for(kind):
     if kind == "care":
         return ([rounded_rect(280, 210, 240, 230, 26), rounded_rect(360, 150, 80, 70, 14)],
                 [rounded_rect(320, 300, 160, 90, 12)])
+    if kind == "apparel":
+        # Cap: crown plus a forward brim.
+        return ([disc(cx, 300, 130)],
+                [rounded_rect(cx - 40, 290, 250, 44, 22)])
+    if kind == "lifestyle":
+        # Tapered cup with a lid band.
+        return ([rounded_rect(310, 210, 180, 250, 24)],
+                [rounded_rect(300, 200, 200, 44, 16)])
     if kind == "bundle":
         return ([rounded_rect(130, 210, 170, 170, 20),
                  rounded_rect(315, 210, 170, 170, 20),

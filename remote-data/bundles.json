@@ -1,20 +1,37 @@
 {
   "schemaVersion": 1,
   "environment": "staging",
-  "generatedAt": "2026-07-24T16:30:00Z",
+  "generatedAt": "2026-07-25T13:40:00Z",
   "bundles": [
+    {
+      "id": "b_home_and_mobile_connector",
+      "name": "Home and Mobile Connector Bundle",
+      "summary": "Gen 3 Wall Connector and Mobile Connector together.",
+      "description": "The standard home charging recommendation: a hardwired Gen 3 Wall Connector for daily charging and a Mobile Connector to keep in the vehicle. Scan each part number separately at the terminal. Wall Connector installation is quoted separately.",
+      "productIds": [
+        "p_chg_wall_connector_gen3",
+        "p_chg_mobile_connector"
+      ],
+      "bundlePrice": 1200.0,
+      "imageName": "b_home_and_mobile_connector.png",
+      "compatibleVehicles": [
+        "universal"
+      ],
+      "status": "active",
+      "featured": true
+    },
     {
       "id": "b_delivery_my",
       "name": "Model Y Delivery Day Kit",
       "summary": "The four accessories most often added at handover.",
       "description": "Everything a new Model Y owner needs on day one: full interior liner set, cargo liner, mud flaps and the wash kit. Scan each SKU individually at the mPOS.",
       "productIds": [
-        "p_my_int_liners",
-        "p_my_crg_cargo_liner",
+        "p_my_aw_interior_liners",
+        "p_my_aw_rear_well_liner",
         "p_my_ext_mud_flaps",
         "p_un_car_wash_kit"
       ],
-      "bundlePrice": 480.0,
+      "bundlePrice": 650.0,
       "imageName": "b_delivery_my.png",
       "compatibleVehicles": [
         "model_y"
@@ -33,7 +50,7 @@
         "p_m3_ext_mud_flaps",
         "p_un_car_wash_kit"
       ],
-      "bundlePrice": 460.0,
+      "bundlePrice": 480.0,
       "imageName": "b_delivery_m3.png",
       "compatibleVehicles": [
         "model_3"
@@ -47,11 +64,11 @@
       "summary": "Wall Connector, mobile connector and public charging adapter.",
       "description": "The standard home charging recommendation. Remind the customer that Wall Connector installation is quoted separately by a certified electrician.",
       "productIds": [
-        "p_un_chg_wall_conn",
-        "p_un_chg_mobile_conn",
-        "p_un_chg_j1772"
+        "p_chg_wall_connector_gen3",
+        "p_chg_mobile_connector",
+        "p_chg_mennekes_type2_75m"
       ],
-      "bundlePrice": 675.0,
+      "bundlePrice": 1495.0,
       "imageName": "b_charging_home.png",
       "compatibleVehicles": [
         "universal"
@@ -65,12 +82,12 @@
       "summary": "Liners, cargo protection and roadside tyre repair.",
       "description": "Seasonal bundle for cold-climate deliveries. Pair with a winter tyre quote from the service desk where applicable.",
       "productIds": [
-        "p_my_int_liners",
-        "p_my_crg_cargo_liner",
-        "p_un_whl_tyre_repair",
+        "p_my_aw_interior_liners",
+        "p_my_aw_rear_well_liner",
+        "p_air_compressor_tyre_kit",
         "p_un_car_wheel_clean"
       ],
-      "bundlePrice": 395.0,
+      "bundlePrice": 660.0,
       "imageName": "b_winter_my.png",
       "compatibleVehicles": [
         "model_y"
@@ -88,7 +105,7 @@
         "p_un_car_wheel_clean",
         "p_un_car_paint_repair"
       ],
-      "bundlePrice": 220.0,
+      "bundlePrice": 230.0,
       "imageName": "b_care_universal.png",
       "compatibleVehicles": [
         "universal"

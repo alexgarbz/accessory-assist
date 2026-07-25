@@ -29,7 +29,9 @@ import os
 import re
 import sys
 
-SKU_PATTERN = re.compile(r"^[A-Z0-9]{2,5}(-[A-Z0-9]{1,6}){1,4}$")
+# Accepts Tesla part numbers as printed on the item (1529454-42-H, 2048569-RH-A)
+# and the internal scheme used by sample content (TSL-MY-INT-0142).
+SKU_PATTERN = re.compile(r"^[A-Z0-9]{2,10}(-[A-Z0-9]{1,6}){1,4}$")
 ALLOWED_IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".heic", ".webp"}
 ALLOWED_STATUSES = {"active", "discontinued", "upcoming"}
 ALLOWED_SEVERITIES = {"info", "warning", "critical"}
