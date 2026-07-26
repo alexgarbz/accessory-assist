@@ -112,9 +112,11 @@ struct ProductCard: View {
         NavigationLink(value: product) {
             VStack(alignment: .leading, spacing: Spacing.xs) {
                 ZStack(alignment: .topTrailing) {
+                    // An explicit height rather than an aspect ratio: the image
+                    // container is a Shape, which accepts whatever it is
+                    // offered, so a ratio alone leaves the height ambiguous.
                     CatalogueImageView(imageRef: product.imageRef)
-                        .aspectRatio(ImageRatio.product, contentMode: .fit)
-                        .frame(width: width)
+                        .frame(width: width, height: (width / ImageRatio.product).rounded())
 
                     FavouriteButton(isFavourite: isFavourite, size: 36, action: onToggleFavourite)
                         .padding(Spacing.xxs)
@@ -154,9 +156,10 @@ struct BundleCard: View {
     var body: some View {
         NavigationLink(value: bundle) {
             VStack(alignment: .leading, spacing: Spacing.xs) {
+                // Product photography is square, so a 16:9 crop would cut most
+                // of the item away. Bundles use the same ratio as products.
                 CatalogueImageView(imageRef: bundle.imageRef)
-                    .aspectRatio(ImageRatio.hero, contentMode: .fit)
-                    .frame(width: width)
+                    .frame(width: width, height: (width / ImageRatio.product).rounded())
 
                 Text(bundle.name)
                     .font(TypeScale.productName)
