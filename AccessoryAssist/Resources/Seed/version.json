@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "catalogueVersion": 14,
-  "environment": "production",
+  "catalogueVersion": 15,
+  "environment": "staging",
   "publishedAt": "2026-07-25T14:10:00Z",
   "minimumAppBuild": 1,
   "files": {
@@ -9,5 +9,5 @@
     "bundles": "bundles.json",
     "announcements": "announcements.json"
   },
-  "notes": "Real Tesla AU shop data only. Product photography is served from Tesla's asset CDN. All prototype sample content removed."
+  "notes": "Staging lane. Same content as production; stage content changes here and verify on a device before promoting to main."
 }

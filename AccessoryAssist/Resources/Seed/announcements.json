@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "environment": "production",
+  "environment": "staging",
   "generatedAt": "2026-07-25T14:10:00Z",
   "announcements": []
 }

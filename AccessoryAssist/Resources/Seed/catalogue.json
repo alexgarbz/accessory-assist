@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "environment": "production",
+  "environment": "staging",
   "generatedAt": "2026-07-25T14:10:00Z",
   "currency": "AUD",
   "vehicles": [
@@ -69,7 +69,7 @@
       "name": "Gen 3 Wall Connector - 7.3m",
       "summary": "Hardwired home charger with a 7.3 m cable.",
       "description": "Gen 3 Wall Connector with a 7.3 m (24 ft) cable. Wi-Fi connected, indoor and outdoor rated. Requires installation by a licensed electrician, quoted separately.",
-      "price": 750.0,
+      "price": 800.0,
       "categoryId": "charging",
       "compatibleVehicles": [
         "universal"
@@ -781,48 +781,6 @@
         "drinkware",
         "grey",
         "gray"
-      ]
-    },
-    {
-      "id": "p_my_int_console_tray",
-      "sku": "TSL-MY-INT-0175",
-      "name": "Model Y Centre Console Organiser",
-      "summary": "Removable tray set for the centre console bin.",
-      "description": "Two-piece tray that divides the console bin into a coin well, a cable channel and a card slot. Not yet released - do not sell.",
-      "price": 95.0,
-      "categoryId": "interior",
-      "compatibleVehicles": [
-        "model_y"
-      ],
-      "imageName": "p_my_int_console_tray.png",
-      "status": "upcoming",
-      "featured": false,
-      "fitNotes": "Release date not confirmed. Staging only.",
-      "tags": [
-        "console",
-        "storage",
-        "organiser"
-      ]
-    },
-    {
-      "id": "p_ct_ext_step_bars",
-      "sku": "TSL-CT-EXT-0455",
-      "name": "Cybertruck Side Step Bars",
-      "summary": "Fixed side steps for the Cybertruck.",
-      "description": "Load-rated aluminium side steps that mount to the existing underbody points. Installation by a service centre. Not yet released - do not sell.",
-      "price": 1250.0,
-      "categoryId": "exterior",
-      "compatibleVehicles": [
-        "cybertruck"
-      ],
-      "imageName": "p_ct_ext_step_bars.png",
-      "status": "upcoming",
-      "featured": false,
-      "fitNotes": "Requires service centre installation. Staging only.",
-      "tags": [
-        "cybertruck",
-        "steps",
-        "exterior"
       ]
     }
   ]
