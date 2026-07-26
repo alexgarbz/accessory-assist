@@ -28,6 +28,7 @@ import json
 import os
 import re
 import sys
+from urllib.parse import urlparse
 
 # Accepts Tesla part numbers as printed on the item (1529454-42-H, 2048569-RH-A)
 # and the internal scheme used by sample content (TSL-MY-INT-0142).
@@ -204,14 +205,33 @@ def validate_catalogue(catalogue, image_names, report):
                 report.error(path, "Unknown vehicle %r. Allowed: %s."
                              % (vehicle_id, ", ".join(sorted(vehicle_ids))))
 
-        validate_image(product.get("imageName"), path, image_names, report)
+        validate_image(product, path, image_names, report)
 
     return products_by_id, vehicle_ids
 
 
-def validate_image(image_name, path, image_names, report):
+def validate_image(entry, path, image_names, report):
+    """An image is either an absolute https URL or a file name in images/."""
+    image_url = entry.get("imageURL")
+    image_name = entry.get("imageName")
+
+    if image_url:
+        if not isinstance(image_url, str):
+            report.error(path, "imageURL must be a string.")
+            return
+        parsed = urlparse(image_url)
+        if parsed.scheme != "https":
+            report.error(path, "imageURL must be an https URL, found %r." % image_url)
+            return
+        if not parsed.netloc:
+            report.error(path, "imageURL has no host: %r." % image_url)
+        extension = os.path.splitext(parsed.path)[1].lower()
+        if extension and extension not in ALLOWED_IMAGE_EXTENSIONS:
+            report.error(path, "imageURL points at an unsupported file type (%s)." % extension)
+        return
+
     if not image_name:
-        report.error(path, "imageName is missing.")
+        report.error(path, "Needs either imageURL or imageName.")
         return
     if "/" in image_name or ".." in image_name:
         report.error(path, "imageName must be a bare file name inside images/.")
@@ -274,7 +294,7 @@ def validate_bundles(bundles_doc, products_by_id, vehicle_ids, image_names, repo
             if vehicle_id not in vehicle_ids:
                 report.error(path, "Unknown vehicle %r." % vehicle_id)
 
-        validate_image(bundle.get("imageName"), path, image_names, report)
+        validate_image(bundle, path, image_names, report)
 
 
 def validate_announcements(doc, report):
@@ -305,6 +325,11 @@ def validate_announcements(doc, report):
 
 
 def validate_orphan_images(image_names, referenced, report):
+    """Flag files in images/ that nothing points at.
+
+    Products that use an absolute imageURL contribute nothing here: their
+    photography is hosted elsewhere and is not expected in images/.
+    """
     for name in sorted(image_names - referenced):
         report.warn("images/%s" % name, "Image is not referenced by any product or bundle.")
 
@@ -325,8 +350,8 @@ def main():
             name for name in os.listdir(images_dir)
             if not name.startswith(".")
         }
-    else:
-        report.error("images/", "Images directory is missing.")
+    # images/ is optional: content that hosts its photography elsewhere via
+    # imageURL does not need it. Missing images are still reported per product.
 
     version = load_json(os.path.join(data_dir, "version.json"), report)
     catalogue = load_json(os.path.join(data_dir, "catalogue.json"), report)

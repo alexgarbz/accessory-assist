@@ -25,7 +25,7 @@ struct ProductRow: View {
         HStack(spacing: Spacing.m) {
             NavigationLink(value: product) {
                 HStack(spacing: Spacing.m) {
-                    CatalogueImageView(imageName: product.imageName, cornerRadius: Radius.control)
+                    CatalogueImageView(imageRef: product.imageRef, cornerRadius: Radius.control)
                         .frame(width: 68, height: 68)
 
                     VStack(alignment: .leading, spacing: Spacing.xxs) {
@@ -112,7 +112,7 @@ struct ProductCard: View {
         NavigationLink(value: product) {
             VStack(alignment: .leading, spacing: Spacing.xs) {
                 ZStack(alignment: .topTrailing) {
-                    CatalogueImageView(imageName: product.imageName)
+                    CatalogueImageView(imageRef: product.imageRef)
                         .aspectRatio(ImageRatio.product, contentMode: .fit)
                         .frame(width: width)
 
@@ -154,7 +154,7 @@ struct BundleCard: View {
     var body: some View {
         NavigationLink(value: bundle) {
             VStack(alignment: .leading, spacing: Spacing.xs) {
-                CatalogueImageView(imageName: bundle.imageName)
+                CatalogueImageView(imageRef: bundle.imageRef)
                     .aspectRatio(ImageRatio.hero, contentMode: .fit)
                     .frame(width: width)
 

@@ -31,7 +31,7 @@ struct BundleDetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: Spacing.l) {
-                CatalogueImageView(imageName: bundle.imageName)
+                CatalogueImageView(imageRef: bundle.imageRef)
                     .aspectRatio(ImageRatio.hero, contentMode: .fit)
                     .frame(maxWidth: .infinity)
                     .padding(.horizontal, Spacing.m)

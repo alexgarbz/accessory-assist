@@ -194,7 +194,7 @@ enum CatalogueValidator {
                                     message: "Unrecognised product status."))
             }
 
-            issues += validateImage(product.imageName, path: path, knownImageNames: knownImageNames)
+            issues += validateImage(product.imageName, imageURL: product.imageURL, path: path, knownImageNames: knownImageNames)
         }
 
         return issues
@@ -257,7 +257,7 @@ enum CatalogueValidator {
                                     message: "Unknown vehicle \"\(vehicleId)\"."))
             }
 
-            issues += validateImage(bundle.imageName, path: path, knownImageNames: knownImageNames)
+            issues += validateImage(bundle.imageName, imageURL: bundle.imageURL, path: path, knownImageNames: knownImageNames)
         }
 
         return issues
@@ -281,14 +281,37 @@ enum CatalogueValidator {
         return issues
     }
 
+    /// Validate the image reference: either an absolute URL to externally
+    /// hosted photography, or a bare file name published with the catalogue.
     private static func validateImage(
         _ imageName: String,
+        imageURL: URL?,
         path: String,
         knownImageNames: Set<String>?
     ) -> [Issue] {
         var issues: [Issue] = []
+
+        if let imageURL {
+            guard let scheme = imageURL.scheme?.lowercased(), scheme == "https" else {
+                issues.append(Issue(severity: .error, path: path,
+                                    message: "imageURL must be an https URL."))
+                return issues
+            }
+            if imageURL.host?.isEmpty ?? true {
+                issues.append(Issue(severity: .error, path: path,
+                                    message: "imageURL has no host."))
+            }
+            let ext = imageURL.pathExtension.lowercased()
+            if !ext.isEmpty, !allowedImageExtensions.contains(ext) {
+                issues.append(Issue(severity: .error, path: path,
+                                    message: "imageURL points at an unsupported file type (.\(ext))."))
+            }
+            return issues
+        }
+
         if imageName.trimmingCharacters(in: .whitespaces).isEmpty {
-            issues.append(Issue(severity: .error, path: path, message: "Image file name is empty."))
+            issues.append(Issue(severity: .error, path: path,
+                                message: "A product needs either imageURL or imageName."))
             return issues
         }
         let ext = (imageName as NSString).pathExtension.lowercased()

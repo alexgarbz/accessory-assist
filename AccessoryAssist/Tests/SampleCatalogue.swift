@@ -73,7 +73,7 @@ enum SampleCatalogue {
           "price": 235.00,
           "categoryId": "interior",
           "compatibleVehicles": ["model_y"],
-          "imageName": "p_my_int_liners.png",
+          "imageURL": "https://images.example.com/liners/2048569-RH-A_1.png",
           "status": "active",
           "featured": true,
           "fitNotes": "Fits 5-seat and 7-seat configurations.",

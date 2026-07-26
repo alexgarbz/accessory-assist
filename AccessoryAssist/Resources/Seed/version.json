@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "catalogueVersion": 13,
+  "catalogueVersion": 14,
   "environment": "production",
-  "publishedAt": "2026-07-25T13:20:00Z",
+  "publishedAt": "2026-07-25T14:10:00Z",
   "minimumAppBuild": 1,
   "files": {
     "catalogue": "catalogue.json",
     "bundles": "bundles.json",
     "announcements": "announcements.json"
   },
-  "notes": "Added the Tesla AU shop range: charging, Model Y and Model Y L interior and cargo, apparel and lifestyle. Prices in AUD. Superseded sample entries removed."
+  "notes": "Real Tesla AU shop data only. Product photography is served from Tesla's asset CDN. All prototype sample content removed."
 }

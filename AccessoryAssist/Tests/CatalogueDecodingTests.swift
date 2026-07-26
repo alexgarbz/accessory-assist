@@ -78,7 +78,14 @@ final class CatalogueDecodingTests: XCTestCase {
         XCTAssertEqual(product.price, Decimal(string: "235.00"))
         XCTAssertEqual(product.categoryId, "interior")
         XCTAssertEqual(product.compatibleVehicles, ["model_y"])
-        XCTAssertEqual(product.imageName, "p_my_int_liners.png")
+        XCTAssertEqual(
+            product.imageURL,
+            URL(string: "https://images.example.com/liners/2048569-RH-A_1.png")
+        )
+        // An absolute URL is used verbatim; the cache key is derived from the
+        // product id so two products cannot collide on a shared file name.
+        XCTAssertEqual(product.imageRef.absoluteURL, product.imageURL)
+        XCTAssertEqual(product.imageRef.cacheKey, "p_my_int_liners.png")
         XCTAssertEqual(product.status, .active)
         XCTAssertTrue(product.featured)
         XCTAssertEqual(product.fitNotes, "Fits 5-seat and 7-seat configurations.")

@@ -15,7 +15,6 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SOURCE="$ROOT/remote-data"
 SEED="$ROOT/AccessoryAssist/Resources/Seed"
-SEED_IMAGES="$ROOT/AccessoryAssist/Resources/SeedImages"
 
 if [ ! -d "$SOURCE" ]; then
   echo "error: $SOURCE not found" >&2
@@ -25,15 +24,14 @@ fi
 echo "Validating remote-data before seeding…"
 python3 "$ROOT/scripts/validate_catalogue.py" "$SOURCE"
 
-mkdir -p "$SEED" "$SEED_IMAGES"
+mkdir -p "$SEED"
 
 for file in version.json catalogue.json bundles.json announcements.json; do
   cp "$SOURCE/$file" "$SEED/$file"
   echo "seeded $file"
 done
 
-rm -f "$SEED_IMAGES"/*.png
-cp "$SOURCE"/images/*.png "$SEED_IMAGES"/
-echo "seeded $(ls -1 "$SEED_IMAGES" | wc -l | tr -d ' ') images"
+# Product photography is served from its own CDN via imageURL and is cached on
+# the device on first fetch, so no images are compiled into the app.
 
 echo "Done. Rebuild the app to pick up the new seed."

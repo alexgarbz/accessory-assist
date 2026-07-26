@@ -261,8 +261,8 @@ final class CatalogueService: ObservableObject {
 
             // 6. Warm the image cache so the catalogue works offline.
             if writeFailure == nil {
-                let imageNames = catalogue.products.map(\.imageName) + bundles.bundles.map(\.imageName)
-                await imageStore.prefetch(Array(Set(imageNames)))
+                let refs = catalogue.products.map(\.imageRef) + bundles.bundles.map(\.imageRef)
+                await imageStore.prefetch(Array(Set(refs)))
             }
         } catch let error as CatalogueError {
             lastChecked = Date()

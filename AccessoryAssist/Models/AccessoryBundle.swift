@@ -12,6 +12,7 @@ struct AccessoryBundle: Decodable, Identifiable, Hashable {
     let productIds: [String]
     let bundlePrice: Decimal
     let imageName: String
+    let imageURL: URL?
     let compatibleVehicles: [String]
     let status: ProductStatus
     let featured: Bool
@@ -19,7 +20,7 @@ struct AccessoryBundle: Decodable, Identifiable, Hashable {
     private enum CodingKeys: String, CodingKey {
         case id, name, summary
         case detail = "description"
-        case productIds, bundlePrice, imageName, compatibleVehicles, status, featured
+        case productIds, bundlePrice, imageName, imageURL, compatibleVehicles, status, featured
     }
 
     init(from decoder: Decoder) throws {
@@ -30,7 +31,8 @@ struct AccessoryBundle: Decodable, Identifiable, Hashable {
         detail = try container.decodeIfPresent(String.self, forKey: .detail) ?? ""
         productIds = try container.decode([String].self, forKey: .productIds)
         bundlePrice = try container.decode(Decimal.self, forKey: .bundlePrice)
-        imageName = try container.decode(String.self, forKey: .imageName)
+        imageName = try container.decodeIfPresent(String.self, forKey: .imageName) ?? ""
+        imageURL = try container.decodeIfPresent(String.self, forKey: .imageURL).flatMap(URL.init(string:))
         compatibleVehicles = try container.decodeIfPresent([String].self, forKey: .compatibleVehicles) ?? []
         status = try container.decodeIfPresent(ProductStatus.self, forKey: .status) ?? .active
         featured = try container.decodeIfPresent(Bool.self, forKey: .featured) ?? false
@@ -44,6 +46,7 @@ struct AccessoryBundle: Decodable, Identifiable, Hashable {
         productIds: [String],
         bundlePrice: Decimal,
         imageName: String = "",
+        imageURL: URL? = nil,
         compatibleVehicles: [String] = [],
         status: ProductStatus = .active,
         featured: Bool = false
@@ -55,9 +58,15 @@ struct AccessoryBundle: Decodable, Identifiable, Hashable {
         self.productIds = productIds
         self.bundlePrice = bundlePrice
         self.imageName = imageName
+        self.imageURL = imageURL
         self.compatibleVehicles = compatibleVehicles
         self.status = status
         self.featured = featured
+    }
+
+    /// Where this bundle's image comes from.
+    var imageRef: CatalogueImageRef {
+        CatalogueImageRef(imageName: imageName, imageURL: imageURL, fallbackKey: id)
     }
 
     func fits(vehicleId: String?) -> Bool {

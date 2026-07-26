@@ -62,34 +62,51 @@ final class ImageStoreTests: XCTestCase {
         XCTAssertNotNil(image, "The device cache must survive a relaunch")
     }
 
-    /// An image name that genuinely ships inside the app, taken from the seed
-    /// catalogue rather than hard-coded — a content change must not be able to
-    /// break these tests.
-    private func bundledImageName() throws -> String {
-        let seed = try XCTUnwrap(SeedCatalogue.load(), "The app must ship a seed catalogue")
-        return try XCTUnwrap(seed.catalogue.products.first?.imageName)
+    func testAbsoluteImageURLIsFetchedAndCached() async {
+        // Product photography is hosted outside the catalogue. The bytes still
+        // land in the same device cache, so the catalogue works offline.
+        let fetcher = RecordingImageFetcher(data: makePNG(size: CGSize(width: 5, height: 5)))
+        let store = ImageStore(source: source, fetcher: fetcher)
+        let remote = URL(string: "https://images.example.com/dam/2048569-RH-A_1.png")!
+        let ref = CatalogueImageRef(imageName: "", imageURL: remote, fallbackKey: "p_my_aw_interior_liners")
+
+        let image = await store.image(for: ref)
+
+        XCTAssertNotNil(image)
+        XCTAssertEqual(fetcher.requestedURLs, [remote], "The absolute URL must be used verbatim")
+        XCTAssertNotNil(
+            CatalogueCacheStore(source: source).cachedImageData(for: ref.cacheKey),
+            "Externally hosted photography must still be cached for offline use"
+        )
     }
 
-    func testFallsBackToTheImageBundledWithTheAppWhenOffline() async throws {
-        let store = ImageStore(source: source, fetcher: FailingImageFetcher())
+    func testCatalogueHostedImageIsFetchedRelativeToTheSource() async {
+        let fetcher = RecordingImageFetcher(data: makePNG(size: CGSize(width: 5, height: 5)))
+        let store = ImageStore(source: source, fetcher: fetcher)
+        let ref = CatalogueImageRef(imageName: "local.png", imageURL: nil, fallbackKey: "p_1")
 
-        let image = await store.image(named: try bundledImageName())
+        _ = await store.image(for: ref)
 
-        XCTAssertNotNil(image, "A device that has never had a connection still shows imagery")
+        XCTAssertEqual(fetcher.requestedURLs.first, source.imageURL(for: "local.png"))
     }
 
-    func testPublishedImageWinsOverTheCopyBundledWithTheApp() async throws {
-        // Replacing artwork by overwriting the file in images/ is a documented
-        // content operation. If the bundled copy were preferred, that change
-        // would never reach a device that shipped with the old image.
-        let name = try bundledImageName()
-        let published = makePNG(size: CGSize(width: 7, height: 7))
-        let store = ImageStore(source: source, fetcher: StubImageFetcher(data: published))
+    func testCacheKeysDoNotCollideAcrossProducts() {
+        // Two products can reference files that share a name once the path is
+        // dropped; the product id keeps their cache entries apart.
+        let a = CatalogueImageRef(
+            imageName: "",
+            imageURL: URL(string: "https://cdn.example.com/one/1_2000.png")!,
+            fallbackKey: "p_alpha"
+        )
+        let b = CatalogueImageRef(
+            imageName: "",
+            imageURL: URL(string: "https://cdn.example.com/two/1_2000.png")!,
+            fallbackKey: "p_beta"
+        )
 
-        let image = await store.image(named: name)
-
-        XCTAssertEqual(image?.size.width, 7, "The published image must win over the bundled one")
-        XCTAssertNotNil(CatalogueCacheStore(source: source).cachedImageData(for: name))
+        XCTAssertNotEqual(a.cacheKey, b.cacheKey)
+        XCTAssertEqual(a.cacheKey, "p_alpha.png")
+        XCTAssertTrue(b.cacheKey.hasSuffix(".png"))
     }
 
     func testUnresolvableImageReturnsNilRatherThanThrowing() async {
@@ -108,7 +125,7 @@ final class ImageStoreTests: XCTestCase {
         let fetcher = StubImageFetcher(data: makePNG(size: CGSize(width: 4, height: 4)))
         let store = ImageStore(source: source, fetcher: fetcher)
 
-        await store.prefetch(["a.png", "b.png", "c.png", "d.png", "e.png"])
+        await store.prefetch(["a.png", "b.png", "c.png", "d.png", "e.png"] as [String])
 
         let cache = CatalogueCacheStore(source: source)
         for name in ["a.png", "b.png", "c.png", "d.png", "e.png"] {
@@ -127,4 +144,20 @@ private final class StubImageFetcher: CatalogueFetching, @unchecked Sendable {
 
 private final class FailingImageFetcher: CatalogueFetching, @unchecked Sendable {
     func fetch(_ url: URL) async throws -> Data { throw CatalogueError.offline }
+}
+
+/// Records which URLs were asked for, so the routing can be asserted.
+private final class RecordingImageFetcher: CatalogueFetching, @unchecked Sendable {
+    private let lock = NSLock()
+    private let data: Data
+    private var _requestedURLs: [URL] = []
+
+    init(data: Data) { self.data = data }
+
+    var requestedURLs: [URL] { lock.withLock { _requestedURLs } }
+
+    func fetch(_ url: URL) async throws -> Data {
+        lock.withLock { _requestedURLs.append(url) }
+        return data
+    }
 }

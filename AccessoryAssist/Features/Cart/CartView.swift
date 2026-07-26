@@ -160,7 +160,7 @@ struct CartLineRow: View {
 
     var body: some View {
         HStack(spacing: Spacing.m) {
-            CatalogueImageView(imageName: line.product.imageName, cornerRadius: Radius.control)
+            CatalogueImageView(imageRef: line.product.imageRef, cornerRadius: Radius.control)
                 .frame(width: 56, height: 56)
 
             VStack(alignment: .leading, spacing: Spacing.xxs) {
