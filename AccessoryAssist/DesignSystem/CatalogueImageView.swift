@@ -7,13 +7,36 @@ import SwiftUI
 /// container shows the surface fill — the frame never resizes when the image
 /// arrives, so a grid does not reflow under the user's thumb.
 struct CatalogueImageView: View {
-    let imageName: String
+    let imageRef: CatalogueImageRef
     var contentMode: ContentMode = .fill
     var cornerRadius: CGFloat = Radius.card
 
     @EnvironmentObject private var imageStore: ImageStore
     @State private var image: UIImage?
     @State private var didFail = false
+
+    init(
+        imageRef: CatalogueImageRef,
+        contentMode: ContentMode = .fill,
+        cornerRadius: CGFloat = Radius.card
+    ) {
+        self.imageRef = imageRef
+        self.contentMode = contentMode
+        self.cornerRadius = cornerRadius
+    }
+
+    /// Convenience for imagery published alongside the catalogue.
+    init(
+        imageName: String,
+        contentMode: ContentMode = .fill,
+        cornerRadius: CGFloat = Radius.card
+    ) {
+        self.init(
+            imageRef: CatalogueImageRef(cacheKey: imageName, absoluteURL: nil),
+            contentMode: contentMode,
+            cornerRadius: cornerRadius
+        )
+    }
 
     var body: some View {
         // The container is a Shape, so it takes exactly the size it is given.
@@ -36,14 +59,14 @@ struct CatalogueImageView: View {
             }
             .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
         .animation(Motion.standard, value: image != nil)
-        .task(id: imageName) {
+        .task(id: imageRef) {
             image = nil
             didFail = false
-            guard !imageName.isEmpty else {
+            guard !imageRef.isEmpty else {
                 didFail = true
                 return
             }
-            let loaded = await imageStore.image(named: imageName)
+            let loaded = await imageStore.image(for: imageRef)
             image = loaded
             didFail = loaded == nil
         }

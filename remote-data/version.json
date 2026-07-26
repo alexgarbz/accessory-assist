@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
   "catalogueVersion": 14,
-  "environment": "staging",
-  "publishedAt": "2026-07-25T13:40:00Z",
+  "environment": "production",
+  "publishedAt": "2026-07-25T14:10:00Z",
   "minimumAppBuild": 1,
   "files": {
     "catalogue": "catalogue.json",
     "bundles": "bundles.json",
     "announcements": "announcements.json"
   },
-  "notes": "Staging: Cybertruck launch kit under test, two upcoming accessories, Gen 3 Wall Connector price test at 750."
+  "notes": "Real Tesla AU shop data only. Product photography is served from Tesla's asset CDN. All prototype sample content removed."
 }

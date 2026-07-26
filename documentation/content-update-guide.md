@@ -7,8 +7,9 @@ Everything in `remote-data/` is content. Products, prices, bundles, vehicle
 compatibility, images and announcements are all published by editing JSON and
 merging it. The app picks the change up on its next launch or foreground.
 
-> Prices, product names and images in this repository are invented sample
-> content for a prototype. Replace them with real content before any real use.
+> Catalogue data records product information observed on Tesla's public
+> Australian store. It is not authorised by Tesla and may be out of date —
+> confirm against Tesla's own systems before any operational use.
 
 ---
 
@@ -47,8 +48,10 @@ Common tasks:
 **Change a price** — edit `price` on the product in `remote-data/catalogue.json`.
 
 **Add a product** — append an object to `products[]`. It needs a unique `id`, a
-unique valid `sku`, a `categoryId` and `compatibleVehicles` that already exist,
-and an `imageName` that exists in `remote-data/images/`.
+unique valid `sku` (the part number the terminal expects), a `categoryId` and
+`compatibleVehicles` that already exist, and an image: either an `imageURL`
+pointing at hosted photography, or an `imageName` that exists in
+`remote-data/images/`.
 
 **Retire a product** — set `"status": "discontinued"`. Do **not** delete it:
 deleting breaks favourites and carts already saved on staff devices, and removes
@@ -61,8 +64,11 @@ it from SKU lookup. Discontinued products stay searchable and are shown with a
 **Post a notice** — add to `remote-data/announcements.json` with `pinned: true`
 to put it on the Home screen. **Always set `endsAt`** or it stays there forever.
 
-**Swap an image** — replace the file in `remote-data/images/` keeping the same
-file name. No catalogue edit needed.
+**Swap an image** — point `imageURL` at the new photography. Products currently
+reference Tesla's own asset URLs, so nothing is stored here. If a catalogue
+instead publishes its own imagery through `imageName`, replace the file in
+`remote-data/images/` keeping the same file name and no catalogue edit is
+needed.
 
 ### 3. Increment the catalogue version
 
@@ -177,7 +183,7 @@ replace `rawBaseURL(branch:)` with the URL you need. Everything downstream
 <base>/catalogue.json
 <base>/bundles.json
 <base>/announcements.json
-<base>/images/<imageName>
+<base>/images/<imageName>   (only if the catalogue publishes its own imagery)
 ```
 
 ### B. Point one device at any URL (no build)
@@ -202,29 +208,22 @@ LAN address, not `localhost`, if testing on a physical device; the simulator can
 use `http://localhost:8000/`).
 
 This is the fastest way to see a content change on a device without pushing
-anything, and it is how to demonstrate the full update flow while the repository
-is private.
+anything.
 
 > `http://` to a non-local host will be blocked by App Transport Security. For
 > anything beyond a local development server, use `https://`.
 
 ---
 
-## Access and the private repository
+## Access
 
-This repository is private, so `raw.githubusercontent.com` will **not** serve
-these files to the app anonymously — requests return 404/401 and the app falls
-back to cached or bundled content, reporting "Catalogue Unavailable" or "Using
-Offline Data".
+The repository is public, so `raw.githubusercontent.com` serves these files to
+the app anonymously. There is no token to configure, and nothing sensitive
+belongs in `remote-data/` — treat everything here as published the moment it is
+merged.
 
 No access token is embedded in the app, deliberately: a token shipped in an app
 binary is extractable by anyone holding the device.
-
-For the prototype, use one of:
-
-* the local server in option C above (recommended for demos), or
-* a temporary public repository containing only `remote-data/`, or
-* making this repository public if the content is not sensitive.
 
 Before real internal deployment, see
 [architecture.md](architecture.md#authenticated-content-delivery) for what a
@@ -243,8 +242,8 @@ to be stale, but it should not be wildly out of date. Before cutting a build:
 ```
 
 This validates `remote-data/`, then copies the JSON into
-`AccessoryAssist/Resources/Seed/` and the images into
-`AccessoryAssist/Resources/SeedImages/`.
+`AccessoryAssist/Resources/Seed/`. No images are compiled into the app —
+photography is fetched from its `imageURL` and cached on the device.
 
 ---
 
@@ -254,7 +253,7 @@ This validates `remote-data/`, then copies the JSON into
 - [ ] `catalogueVersion` incremented
 - [ ] `publishedAt` and `notes` updated
 - [ ] `environment` is `production`
-- [ ] New images added and referenced correctly
+- [ ] New `imageURL` values load, and are https
 - [ ] Tested on a device against `staging`
 - [ ] Every new SKU produces a barcode that the mPOS terminal actually reads
 - [ ] Discontinued items marked, not deleted

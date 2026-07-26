@@ -94,8 +94,25 @@ The seed guarantees a first launch with no network is still usable. The UI
 always labels it ("Using bundled catalogue"), because its prices are as old as
 the build. Refresh it with `./scripts/sync_seed_resources.sh`.
 
-Images follow the same idea: memory → disk cache → image bundled with the app →
-network, with anything fetched written to disk for next time.
+### Images
+
+Content points at an image one of two ways, modelled by `CatalogueImageRef`:
+
+* `imageURL` — an absolute https URL to photography hosted elsewhere. This is
+  what the current catalogue uses: products carry Tesla's own asset URLs, so
+  real product photography appears without this repository redistributing any of
+  it, and the image is always the publisher's current one.
+* `imageName` — a bare file name served from `<base URL>/images/`, for imagery
+  published alongside the catalogue.
+
+An absolute URL wins when both are present. Either way the lookup order is the
+same — memory → device cache → network → an image bundled with the app — and
+anything fetched is written to disk, so a store that has loaded the catalogue
+once keeps its photography with no connection.
+
+Cache entries for external photography are keyed by product id rather than by
+the remote file name: two products can reference files that collide once the
+URL path is dropped, and their cache entries must not.
 
 ---
 
@@ -236,13 +253,15 @@ xcodebuild test -project AccessoryAssist.xcodeproj -scheme AccessoryAssist \
 ## Authenticated content delivery
 
 **The prototype hosts the catalogue on GitHub raw URLs and embeds no
-credentials.** With the repository private, those URLs are not anonymously
-readable, so the app falls back to cached or bundled content and says so. That
-is the correct behaviour for a prototype, and it is not a deployment posture.
+credentials.** The repository is public, so those URLs are readable by the app
+without authentication of any kind, and product photography comes from a public
+asset CDN. Nothing needs configuring to run it.
 
-No personal access token is embedded in the app, and none should be. A token in
-an app binary is extractable by anyone with the device and grants repository
-access far beyond reading a catalogue.
+No personal access token is embedded in the app, and none should be — including
+if this content moves back behind authentication. A token in an app binary is
+extractable by anyone with the device and grants repository access far beyond
+reading a catalogue. Authentication belongs in a credential the device is
+provisioned with, not in the binary.
 
 Before internal deployment, catalogue delivery needs:
 

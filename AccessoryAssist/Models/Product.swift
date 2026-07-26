@@ -37,7 +37,11 @@ struct Product: Decodable, Identifiable, Hashable {
     let price: Decimal
     let categoryId: String
     let compatibleVehicles: [String]
+    /// Bare file name served from the catalogue's own `images/` directory.
     let imageName: String
+    /// Absolute URL for photography hosted outside the catalogue. Takes
+    /// precedence over `imageName` when both are present.
+    let imageURL: URL?
     let status: ProductStatus
     let featured: Bool
     let fitNotes: String?
@@ -46,7 +50,7 @@ struct Product: Decodable, Identifiable, Hashable {
     private enum CodingKeys: String, CodingKey {
         case id, sku, name, summary
         case detail = "description"
-        case price, categoryId, compatibleVehicles, imageName, status, featured, fitNotes, tags
+        case price, categoryId, compatibleVehicles, imageName, imageURL, status, featured, fitNotes, tags
     }
 
     init(from decoder: Decoder) throws {
@@ -59,7 +63,8 @@ struct Product: Decodable, Identifiable, Hashable {
         price = try container.decode(Decimal.self, forKey: .price)
         categoryId = try container.decode(String.self, forKey: .categoryId)
         compatibleVehicles = try container.decodeIfPresent([String].self, forKey: .compatibleVehicles) ?? []
-        imageName = try container.decode(String.self, forKey: .imageName)
+        imageName = try container.decodeIfPresent(String.self, forKey: .imageName) ?? ""
+        imageURL = try container.decodeIfPresent(String.self, forKey: .imageURL).flatMap(URL.init(string:))
         status = try container.decodeIfPresent(ProductStatus.self, forKey: .status) ?? .active
         featured = try container.decodeIfPresent(Bool.self, forKey: .featured) ?? false
         fitNotes = try container.decodeIfPresent(String.self, forKey: .fitNotes)
@@ -77,6 +82,7 @@ struct Product: Decodable, Identifiable, Hashable {
         categoryId: String,
         compatibleVehicles: [String] = [],
         imageName: String = "",
+        imageURL: URL? = nil,
         status: ProductStatus = .active,
         featured: Bool = false,
         fitNotes: String? = nil,
@@ -91,10 +97,16 @@ struct Product: Decodable, Identifiable, Hashable {
         self.categoryId = categoryId
         self.compatibleVehicles = compatibleVehicles
         self.imageName = imageName
+        self.imageURL = imageURL
         self.status = status
         self.featured = featured
         self.fitNotes = fitNotes
         self.tags = tags
+    }
+
+    /// Where this product's image comes from.
+    var imageRef: CatalogueImageRef {
+        CatalogueImageRef(imageName: imageName, imageURL: imageURL, fallbackKey: id)
     }
 
     /// True when the product fits the given vehicle id, honouring the

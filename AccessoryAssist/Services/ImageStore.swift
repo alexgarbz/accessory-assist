@@ -31,54 +31,65 @@ final class ImageStore: ObservableObject {
     }
 
     /// Fetch an image, or `nil` when it cannot be resolved from any layer.
-    func image(named imageName: String) async -> UIImage? {
-        guard !imageName.isEmpty else { return nil }
+    ///
+    /// Product photography hosted outside the catalogue is fetched from its own
+    /// URL; imagery published with the catalogue is fetched relative to the
+    /// current catalogue source. Either way the bytes land in the same device
+    /// cache, so the catalogue keeps working with no connection.
+    func image(for ref: CatalogueImageRef) async -> UIImage? {
+        guard !ref.isEmpty, !ref.cacheKey.isEmpty else { return nil }
+        let key = ref.cacheKey
 
-        if let cached = memory.object(forKey: imageName as NSString) {
+        if let cached = memory.object(forKey: key as NSString) {
             return cached
         }
-        if let existing = inFlight[imageName] {
+        if let existing = inFlight[key] {
             return await existing.value
         }
 
         let task = Task<UIImage?, Never> { [source, cache, fetcher] in
             // Device cache.
-            if let data = cache.cachedImageData(for: imageName), let image = UIImage(data: data) {
+            if let data = cache.cachedImageData(for: key), let image = UIImage(data: data) {
                 return image
             }
             // Network, then persist for offline use.
             //
             // This is attempted before the copy bundled with the app, and the
-            // order matters: replacing artwork by overwriting the file in
-            // images/ is a documented content operation, so a stale image
-            // shipped in the binary must never win over the published one.
-            if let data = try? await fetcher.fetch(source.imageURL(for: imageName)),
-               let image = UIImage(data: data) {
-                cache.storeImage(data, for: imageName)
+            // order matters: replacing artwork at the same location is a
+            // documented content operation, so a stale image shipped in the
+            // binary must never win over the published one.
+            let remoteURL = ref.absoluteURL ?? source.imageURL(for: key)
+            if let data = try? await fetcher.fetch(remoteURL), let image = UIImage(data: data) {
+                cache.storeImage(data, for: key)
                 return image
             }
-            // Fall back to the image shipped with the app (seed catalogue), so
-            // a device that has never had a connection still shows something.
-            let stem = (imageName as NSString).deletingPathExtension
+            // Fall back to an image shipped with the app, so a device that has
+            // never had a connection still shows something.
+            let stem = (key as NSString).deletingPathExtension
             return UIImage(named: stem)
         }
 
-        inFlight[imageName] = task
+        inFlight[key] = task
         let image = await task.value
-        inFlight[imageName] = nil
+        inFlight[key] = nil
         if let image {
-            memory.setObject(image, forKey: imageName as NSString, cost: Int(image.size.width * image.size.height * 4))
+            memory.setObject(image, forKey: key as NSString, cost: Int(image.size.width * image.size.height * 4))
         }
         return image
     }
 
+    /// Convenience for imagery published alongside the catalogue.
+    func image(named imageName: String) async -> UIImage? {
+        await image(for: CatalogueImageRef(cacheKey: imageName, absoluteURL: nil))
+    }
+
     /// Warm the cache after a catalogue update so the app survives losing
     /// connectivity mid-shift. Bounded concurrency keeps it off the critical path.
-    func prefetch(_ imageNames: [String]) async {
-        let missing = imageNames.filter { name in
-            !name.isEmpty
-                && memory.object(forKey: name as NSString) == nil
-                && cache.cachedImageData(for: name) == nil
+    func prefetch(_ refs: [CatalogueImageRef]) async {
+        let missing = refs.filter { ref in
+            !ref.cacheKey.isEmpty
+                && memory.object(forKey: ref.cacheKey as NSString) == nil
+                && cache.cachedImageData(for: ref.cacheKey) == nil
         }
         guard !missing.isEmpty else { return }
 
@@ -87,14 +98,19 @@ final class ImageStore: ObservableObject {
         while index < missing.count {
             let batch = Array(missing[index..<min(index + batchSize, missing.count)])
             await withTaskGroup(of: Void.self) { group in
-                for name in batch {
+                for ref in batch {
                     group.addTask { [weak self] in
-                        _ = await self?.image(named: name)
+                        _ = await self?.image(for: ref)
                     }
                 }
             }
             index += batchSize
         }
+    }
+
+    /// Convenience for imagery published alongside the catalogue.
+    func prefetch(_ imageNames: [String]) async {
+        await prefetch(imageNames.map { CatalogueImageRef(cacheKey: $0, absoluteURL: nil) })
     }
 
     func cacheSizeInBytes() -> Int64 {

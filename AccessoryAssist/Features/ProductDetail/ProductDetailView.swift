@@ -27,7 +27,7 @@ struct ProductDetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: Spacing.l) {
-                CatalogueImageView(imageName: product.imageName)
+                CatalogueImageView(imageRef: product.imageRef)
                     .aspectRatio(ImageRatio.product, contentMode: .fit)
                     .frame(maxWidth: .infinity)
                     .padding(.horizontal, Spacing.m)

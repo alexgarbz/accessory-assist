@@ -1,33 +1,18 @@
 {
   "schemaVersion": 1,
-  "environment": "staging",
-  "generatedAt": "2026-07-25T13:40:00Z",
+  "environment": "production",
+  "generatedAt": "2026-07-25T14:10:00Z",
   "currency": "AUD",
   "vehicles": [
-    {
-      "id": "model_s",
-      "name": "Model S",
-      "order": 1
-    },
     {
       "id": "model_3",
       "name": "Model 3",
       "order": 2
     },
     {
-      "id": "model_x",
-      "name": "Model X",
-      "order": 3
-    },
-    {
       "id": "model_y",
       "name": "Model Y",
       "order": 4
-    },
-    {
-      "id": "cybertruck",
-      "name": "Cybertruck",
-      "order": 6
     },
     {
       "id": "model_y_l",
@@ -67,11 +52,6 @@
       "order": 5
     },
     {
-      "id": "care",
-      "name": "Vehicle Care",
-      "order": 6
-    },
-    {
       "id": "apparel",
       "name": "Apparel",
       "order": 7
@@ -84,393 +64,6 @@
   ],
   "products": [
     {
-      "id": "p_m3_int_liners",
-      "sku": "TSL-M3-INT-0138",
-      "name": "Model 3 All-Weather Interior Liners",
-      "summary": "Front, rear and trunk liners moulded to the Model 3 floor pan.",
-      "description": "Laser-measured thermoplastic liners covering the front footwells, rear footwells and rear trunk. Raised outer lip contains spills and debris. Removable for rinsing.",
-      "price": 225.0,
-      "categoryId": "interior",
-      "compatibleVehicles": [
-        "model_3"
-      ],
-      "imageName": "p_m3_int_liners.png",
-      "status": "active",
-      "featured": true,
-      "fitNotes": "Confirm build year with the customer. 2024 refresh uses the same liner set.",
-      "tags": [
-        "liners",
-        "floor mats",
-        "weather"
-      ]
-    },
-    {
-      "id": "p_ms_int_liners",
-      "sku": "TSL-MS-INT-0120",
-      "name": "Model S All-Weather Interior Liners",
-      "summary": "Full interior liner set for Model S.",
-      "description": "Moulded thermoplastic liners for the front footwells, rear footwells, front trunk and rear trunk. Raised outer lip contains spills and debris.",
-      "price": 245.0,
-      "categoryId": "interior",
-      "compatibleVehicles": [
-        "model_s"
-      ],
-      "imageName": "p_ms_int_liners.png",
-      "status": "active",
-      "featured": false,
-      "tags": [
-        "liners",
-        "floor mats"
-      ]
-    },
-    {
-      "id": "p_mx_int_liners",
-      "sku": "TSL-MX-INT-0125",
-      "name": "Model X All-Weather Interior Liners",
-      "summary": "Full interior liner set for Model X.",
-      "description": "Moulded thermoplastic liners for the front footwells, second row, third row and rear trunk. Raised outer lip contains spills and debris.",
-      "price": 265.0,
-      "categoryId": "interior",
-      "compatibleVehicles": [
-        "model_x"
-      ],
-      "imageName": "p_mx_int_liners.png",
-      "status": "active",
-      "featured": false,
-      "fitNotes": "Six-seat and seven-seat layouts use different second-row pieces. Confirm before sale.",
-      "tags": [
-        "liners",
-        "floor mats"
-      ]
-    },
-    {
-      "id": "p_m3_int_sunshade",
-      "sku": "TSL-M3-INT-0151",
-      "name": "Model 3 Glass Roof Sunshade",
-      "summary": "Two-piece mesh sunshade for the fixed glass roof.",
-      "description": "Reduces cabin heat load and direct sunlight through the panoramic glass roof. Installs into the existing roof channel without tools. Folds for storage.",
-      "price": 105.0,
-      "categoryId": "interior",
-      "compatibleVehicles": [
-        "model_3"
-      ],
-      "imageName": "p_m3_int_sunshade.png",
-      "status": "active",
-      "featured": false,
-      "tags": [
-        "sunshade",
-        "roof",
-        "summer"
-      ]
-    },
-    {
-      "id": "p_my_int_pet_liner",
-      "sku": "TSL-MY-INT-0160",
-      "name": "Model Y Pet Liner",
-      "summary": "Rear seat and cargo liner for transporting animals.",
-      "description": "Water-resistant quilted liner covering the rear bench and cargo area with the seats folded. Anchors to the rear headrests and cargo hooks. Machine washable.",
-      "price": 220.0,
-      "categoryId": "interior",
-      "compatibleVehicles": [
-        "model_y"
-      ],
-      "imageName": "p_my_int_pet_liner.png",
-      "status": "active",
-      "featured": false,
-      "tags": [
-        "pet",
-        "liner",
-        "cargo"
-      ]
-    },
-    {
-      "id": "p_un_int_phone_dock",
-      "sku": "TSL-UN-INT-0170",
-      "name": "Wireless Phone Dock",
-      "summary": "15 W wireless charging dock for the centre console.",
-      "description": "Drop-in wireless charging dock that replaces the standard console tray. Charges two devices at up to 15 W each. Powered from the existing console USB-C connector.",
-      "price": 125.0,
-      "categoryId": "interior",
-      "compatibleVehicles": [
-        "model_3",
-        "model_y"
-      ],
-      "imageName": "p_un_int_phone_dock.png",
-      "status": "active",
-      "featured": true,
-      "fitNotes": "Not compatible with the 2024 Model 3 refresh console.",
-      "tags": [
-        "phone",
-        "charging",
-        "console"
-      ]
-    },
-    {
-      "id": "p_m3_crg_trunk_mat",
-      "sku": "TSL-M3-CRG-0205",
-      "name": "Model 3 Trunk Mat",
-      "summary": "Moulded rear trunk mat with raised edges.",
-      "description": "Covers the rear trunk floor with a raised perimeter to contain spills. Removable for rinsing.",
-      "price": 90.0,
-      "categoryId": "cargo",
-      "compatibleVehicles": [
-        "model_3"
-      ],
-      "imageName": "p_m3_crg_trunk_mat.png",
-      "status": "active",
-      "featured": false,
-      "tags": [
-        "cargo",
-        "trunk",
-        "liner"
-      ]
-    },
-    {
-      "id": "p_ct_crg_bed_liner",
-      "sku": "TSL-CT-CRG-0220",
-      "name": "Cybertruck Bed Liner Mat",
-      "summary": "Textured mat for the Cybertruck vault floor.",
-      "description": "Heavy-gauge textured mat that protects the vault floor and reduces load shift. Cut around the existing tie-down points and drain plugs.",
-      "price": 190.0,
-      "categoryId": "cargo",
-      "compatibleVehicles": [
-        "cybertruck"
-      ],
-      "imageName": "p_ct_crg_bed_liner.png",
-      "status": "active",
-      "featured": false,
-      "tags": [
-        "cargo",
-        "bed",
-        "vault"
-      ]
-    },
-    {
-      "id": "p_un_chg_ccs",
-      "sku": "TSL-UN-CHG-0318",
-      "name": "CCS Combo 1 Adapter",
-      "summary": "DC fast charging adapter for CCS networks.",
-      "description": "Enables DC fast charging at CCS Combo 1 stations at up to 250 kW. Requires a compatible vehicle and current firmware.",
-      "price": 250.0,
-      "categoryId": "charging",
-      "compatibleVehicles": [
-        "universal"
-      ],
-      "imageName": "p_un_chg_ccs.png",
-      "status": "active",
-      "featured": false,
-      "fitNotes": "Check vehicle retrofit eligibility in the service portal before selling.",
-      "tags": [
-        "charging",
-        "adapter",
-        "ccs",
-        "dc"
-      ]
-    },
-    {
-      "id": "p_my_ext_roof_rack",
-      "sku": "TSL-MY-EXT-0402",
-      "name": "Model Y Roof Rack",
-      "summary": "Removable crossbar system rated to 165 lb.",
-      "description": "Aluminium crossbars that mount to the reinforced roof points. Supports Tesla and third-party T-slot accessories. Torque wrench supplied.",
-      "price": 450.0,
-      "categoryId": "exterior",
-      "compatibleVehicles": [
-        "model_y"
-      ],
-      "imageName": "p_my_ext_roof_rack.png",
-      "status": "active",
-      "featured": false,
-      "fitNotes": "Reduces range at highway speed. Advise the customer to remove when not in use.",
-      "tags": [
-        "roof",
-        "rack",
-        "carrier"
-      ]
-    },
-    {
-      "id": "p_my_ext_mud_flaps",
-      "sku": "TSL-MY-EXT-0411",
-      "name": "Model Y Mud Flap Kit",
-      "summary": "Front and rear mud flaps, no drilling required.",
-      "description": "Moulded flaps that mount to the existing wheel arch fasteners. Reduces paint chipping and underbody spray. Set of four with fixings.",
-      "price": 75.0,
-      "categoryId": "exterior",
-      "compatibleVehicles": [
-        "model_y"
-      ],
-      "imageName": "p_my_ext_mud_flaps.png",
-      "status": "active",
-      "featured": false,
-      "tags": [
-        "mud flaps",
-        "exterior",
-        "protection"
-      ]
-    },
-    {
-      "id": "p_m3_ext_mud_flaps",
-      "sku": "TSL-M3-EXT-0410",
-      "name": "Model 3 Mud Flap Kit",
-      "summary": "Front and rear mud flaps, no drilling required.",
-      "description": "Moulded flaps that mount to the existing wheel arch fasteners. Reduces paint chipping and underbody spray. Set of four with fixings.",
-      "price": 75.0,
-      "categoryId": "exterior",
-      "compatibleVehicles": [
-        "model_3"
-      ],
-      "imageName": "p_m3_ext_mud_flaps.png",
-      "status": "active",
-      "featured": false,
-      "tags": [
-        "mud flaps",
-        "exterior",
-        "protection"
-      ]
-    },
-    {
-      "id": "p_ct_ext_bed_cover",
-      "sku": "TSL-CT-EXT-0450",
-      "name": "Cybertruck Vault Cover Accessory Kit",
-      "summary": "Rail and tie-down kit for the powered vault cover.",
-      "description": "Adds four load-rated tie-down points and a cargo divider rail to the vault. Compatible with the powered tonneau cover in all positions.",
-      "price": 750.0,
-      "categoryId": "exterior",
-      "compatibleVehicles": [
-        "cybertruck"
-      ],
-      "imageName": "p_ct_ext_bed_cover.png",
-      "status": "active",
-      "featured": false,
-      "tags": [
-        "cybertruck",
-        "vault",
-        "cargo"
-      ]
-    },
-    {
-      "id": "p_m3_ext_pedal_set",
-      "sku": "TSL-M3-EXT-0420",
-      "name": "Model 3 Sport Pedal Set",
-      "summary": "Discontinued. Do not order.",
-      "description": "Machined aluminium pedal covers. This product has been discontinued and is retained for historical lookup only.",
-      "price": 85.0,
-      "categoryId": "exterior",
-      "compatibleVehicles": [
-        "model_3"
-      ],
-      "imageName": "p_m3_ext_pedal_set.png",
-      "status": "discontinued",
-      "featured": false,
-      "tags": [
-        "pedals",
-        "discontinued"
-      ]
-    },
-    {
-      "id": "p_my_whl_aero_covers",
-      "sku": "TSL-MY-WHL-0601",
-      "name": "Model Y 19\" Gemini Aero Covers",
-      "summary": "Set of four aerodynamic wheel covers.",
-      "description": "Snap-on covers for 19 inch Gemini wheels that improve highway efficiency. Sold as a set of four with a removal tool.",
-      "price": 175.0,
-      "categoryId": "wheels",
-      "compatibleVehicles": [
-        "model_y"
-      ],
-      "imageName": "p_my_whl_aero_covers.png",
-      "status": "active",
-      "featured": false,
-      "fitNotes": "19 inch Gemini wheels only. Does not fit 20 or 21 inch wheels.",
-      "tags": [
-        "wheels",
-        "aero",
-        "covers"
-      ]
-    },
-    {
-      "id": "p_m3_whl_aero_covers",
-      "sku": "TSL-M3-WHL-0605",
-      "name": "Model 3 18\" Aero Covers",
-      "summary": "Set of four aerodynamic wheel covers.",
-      "description": "Snap-on covers for 18 inch Aero wheels that improve highway efficiency. Sold as a set of four with a removal tool.",
-      "price": 145.0,
-      "categoryId": "wheels",
-      "compatibleVehicles": [
-        "model_3"
-      ],
-      "imageName": "p_m3_whl_aero_covers.png",
-      "status": "active",
-      "featured": false,
-      "fitNotes": "18 inch wheels only.",
-      "tags": [
-        "wheels",
-        "aero",
-        "covers"
-      ]
-    },
-    {
-      "id": "p_un_car_wash_kit",
-      "sku": "TSL-UN-CAR-0501",
-      "name": "Vehicle Care Wash Kit",
-      "summary": "Complete wash kit with bucket, mitt and shampoo.",
-      "description": "Includes grit-guard bucket, wash mitt, drying towel, pH-neutral shampoo and glass cleaner. Safe for all Tesla paint finishes.",
-      "price": 145.0,
-      "categoryId": "care",
-      "compatibleVehicles": [
-        "universal"
-      ],
-      "imageName": "p_un_car_wash_kit.png",
-      "status": "active",
-      "featured": true,
-      "tags": [
-        "care",
-        "wash",
-        "detailing"
-      ]
-    },
-    {
-      "id": "p_un_car_wheel_clean",
-      "sku": "TSL-UN-CAR-0508",
-      "name": "Wheel Cleaner & Brush Set",
-      "summary": "Acid-free wheel cleaner with detailing brushes.",
-      "description": "Acid-free cleaner safe for painted, machined and powder-coated wheels, supplied with a barrel brush and two detail brushes.",
-      "price": 55.0,
-      "categoryId": "care",
-      "compatibleVehicles": [
-        "universal"
-      ],
-      "imageName": "p_un_car_wheel_clean.png",
-      "status": "active",
-      "featured": false,
-      "tags": [
-        "care",
-        "wheels",
-        "cleaning"
-      ]
-    },
-    {
-      "id": "p_un_car_paint_repair",
-      "sku": "TSL-UN-CAR-0515",
-      "name": "Paint Repair Kit",
-      "summary": "Touch-up pen and applicator set.",
-      "description": "Colour-matched touch-up paint with a fine applicator pen, abrasive pad and clear coat. Specify the vehicle paint code at the point of sale.",
-      "price": 55.0,
-      "categoryId": "care",
-      "compatibleVehicles": [
-        "universal"
-      ],
-      "imageName": "p_un_car_paint_repair.png",
-      "status": "active",
-      "featured": false,
-      "fitNotes": "Confirm the paint code from the vehicle door jamb label before handover.",
-      "tags": [
-        "care",
-        "paint",
-        "touch-up"
-      ]
-    },
-    {
       "id": "p_chg_wall_connector_gen3",
       "sku": "1529454-42-H",
       "name": "Gen 3 Wall Connector - 7.3m",
@@ -481,7 +74,7 @@
       "compatibleVehicles": [
         "universal"
       ],
-      "imageName": "p_chg_wall_connector_gen3.png",
+      "imageURL": "https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/CAR_ACCESSORIES/MODEL_S/CHARGING_ADAPTERS/1529455-02-D_0_2000.jpg",
       "status": "active",
       "featured": true,
       "fitNotes": "Installation is not included. Refer the customer to the certified installer list.",
@@ -503,7 +96,7 @@
       "compatibleVehicles": [
         "universal"
       ],
-      "imageName": "p_chg_mobile_connector.png",
+      "imageURL": "https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/CAR_ACCESSORIES/MODEL_3/CHARGING_ADAPTERS/1121254-00-E_0_2000.jpg",
       "status": "active",
       "featured": true,
       "tags": [
@@ -524,7 +117,7 @@
       "compatibleVehicles": [
         "universal"
       ],
-      "imageName": "p_chg_mennekes_type2_75m.png",
+      "imageURL": "https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/CAR_ACCESSORIES/MODEL_3/CHARGING_ADAPTERS/Mennekes_Type_2_2000.jpg",
       "status": "active",
       "featured": false,
       "tags": [
@@ -546,7 +139,7 @@
       "compatibleVehicles": [
         "model_y"
       ],
-      "imageName": "p_my_aw_interior_liners.png",
+      "imageURL": "https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/CAR_ACCESSORIES/MODEL_Y/INTERIOR/2048569-RH-A_1.png",
       "status": "active",
       "featured": true,
       "fitNotes": "Fits Model Y produced 2025 onward. Not compatible with Model Y L. Part number taken from the Tesla asset reference, not from a published SKU field. Confirm the part number at the counter before scanning.",
@@ -569,7 +162,7 @@
         "model_y",
         "model_y_l"
       ],
-      "imageName": "p_my_cooler.png",
+      "imageURL": "https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/CAR_ACCESSORIES/MODEL_Y/INTERIOR/2065448-00-A_1_2000.png",
       "status": "active",
       "featured": false,
       "fitNotes": "For Model Y Premium and Performance, and Model Y built 16/2/2020 - 23/2/2025.",
@@ -591,7 +184,7 @@
       "compatibleVehicles": [
         "model_y"
       ],
-      "imageName": "p_my_air_mattress.png",
+      "imageURL": "https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/CAR_ACCESSORIES/MODEL_Y/INTERIOR/2013118-00-A-01.jpg",
       "status": "active",
       "featured": false,
       "tags": [
@@ -612,7 +205,7 @@
       "compatibleVehicles": [
         "model_y_l"
       ],
-      "imageName": "p_myl_air_mattress.png",
+      "imageURL": "https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/CAR_ACCESSORIES/MODEL_Y/INTERIOR/2256876-00-A_2000_5.jpg",
       "status": "active",
       "featured": false,
       "tags": [
@@ -633,7 +226,7 @@
       "compatibleVehicles": [
         "model_y"
       ],
-      "imageName": "p_my_console_trays.png",
+      "imageURL": "https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/CAR_ACCESSORIES/MODEL_3/INTERIOR/1977818-00-A_01_2000.jpg",
       "status": "active",
       "featured": false,
       "fitNotes": "For Model Y Premium and Performance.",
@@ -656,7 +249,7 @@
         "model_y",
         "model_y_l"
       ],
-      "imageName": "p_my_double_console_tray.png",
+      "imageURL": "https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/CAR_ACCESSORIES/MODEL_Y/INTERIOR/2166861-00-A_2000_2000_1.jpg",
       "status": "active",
       "featured": false,
       "fitNotes": "For Model Y Premium and Performance.",
@@ -678,7 +271,7 @@
       "compatibleVehicles": [
         "model_y"
       ],
-      "imageName": "p_my_sunshade_glass_roof.png",
+      "imageURL": "https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/CAR_ACCESSORIES/MODEL_Y/INTERIOR/2073497-00-A_1_2000.png",
       "status": "active",
       "featured": true,
       "tags": [
@@ -699,7 +292,7 @@
       "compatibleVehicles": [
         "model_y"
       ],
-      "imageName": "p_my_sunshade_liftgate.png",
+      "imageURL": "https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/CAR_ACCESSORIES/MODEL_Y/INTERIOR/2073498-00-A_1_2000.png",
       "status": "active",
       "featured": false,
       "tags": [
@@ -721,7 +314,7 @@
         "model_y",
         "model_y_l"
       ],
-      "imageName": "p_my_front_sunshade.png",
+      "imageURL": "https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/CAR_ACCESSORIES/MODEL_Y/INTERIOR/2194728-00-A_1.png",
       "status": "active",
       "featured": false,
       "tags": [
@@ -743,7 +336,7 @@
         "model_y",
         "model_y_l"
       ],
-      "imageName": "p_my_projection_lights.png",
+      "imageURL": "https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/CAR_ACCESSORIES/MODEL_Y/EXTERIOR/2097852-00-A-1-01.png",
       "status": "active",
       "featured": false,
       "tags": [
@@ -766,7 +359,7 @@
         "model_y",
         "model_y_l"
       ],
-      "imageName": "p_headrest_pillow.png",
+      "imageURL": "https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/CAR_ACCESSORIES/MODEL_3/INTERIOR/2057183-00-A_1_2000.jpg",
       "status": "active",
       "featured": false,
       "tags": [
@@ -789,7 +382,7 @@
         "model_y",
         "model_y_l"
       ],
-      "imageName": "p_lumbar_pillow.png",
+      "imageURL": "https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/CAR_ACCESSORIES/MODEL_3/INTERIOR/2057184-00-A_0_2000.jpg",
       "status": "active",
       "featured": false,
       "tags": [
@@ -812,7 +405,7 @@
         "model_y",
         "model_y_l"
       ],
-      "imageName": "p_key_fob.png",
+      "imageURL": "https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/studio/CAR_ACCESSORIES/MODEL_3/INTERIOR/1449859-00-D_0_2000.jpg",
       "status": "active",
       "featured": true,
       "fitNotes": "Pair the fob to the vehicle before handover. One fob per pairing session.",
@@ -834,7 +427,7 @@
       "compatibleVehicles": [
         "model_y_l"
       ],
-      "imageName": "p_myl_door_sill_guard.png",
+      "imageURL": "https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/CAR_ACCESSORIES/MODEL_Y/INTERIOR/2193128-00-A_1.png",
       "status": "active",
       "featured": false,
       "tags": [
@@ -855,7 +448,7 @@
       "compatibleVehicles": [
         "model_y"
       ],
-      "imageName": "p_my_aw_trunk_seatback_liner.png",
+      "imageURL": "https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/CAR_ACCESSORIES/MODEL_Y/INTERIOR/2048569-TS-A_1_2000.png",
       "status": "active",
       "featured": false,
       "fitNotes": "Part number taken from the Tesla asset reference, not from a published SKU field. Confirm the part number at the counter before scanning.",
@@ -877,7 +470,7 @@
       "compatibleVehicles": [
         "model_y"
       ],
-      "imageName": "p_my_aw_rear_well_liner.png",
+      "imageURL": "https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/CAR_ACCESSORIES/MODEL_Y/INTERIOR/2048569-WL-A_01_2000.png",
       "status": "active",
       "featured": false,
       "fitNotes": "Part number taken from the Tesla asset reference, not from a published SKU field. Confirm the part number at the counter before scanning.",
@@ -899,7 +492,7 @@
       "compatibleVehicles": [
         "model_y"
       ],
-      "imageName": "p_my_aw_front_trunk_liner.png",
+      "imageURL": "https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/CAR_ACCESSORIES/MODEL_Y/INTERIOR/2048569-FT-A_1_2000.png",
       "status": "active",
       "featured": false,
       "fitNotes": "Part number taken from the Tesla asset reference, not from a published SKU field. Confirm the part number at the counter before scanning.",
@@ -921,7 +514,7 @@
       "compatibleVehicles": [
         "model_y_l"
       ],
-      "imageName": "p_myl_aw_trunk_seatback_liner.png",
+      "imageURL": "https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/CAR_ACCESSORIES/MODEL_Y/INTERIOR/2166860-00-A_1.png",
       "status": "active",
       "featured": false,
       "tags": [
@@ -942,7 +535,7 @@
       "compatibleVehicles": [
         "model_y_l"
       ],
-      "imageName": "p_myl_trunk_storage_bins.png",
+      "imageURL": "https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/CAR_ACCESSORIES/MODEL_Y/INTERIOR/2166862-00-A_1.png",
       "status": "active",
       "featured": false,
       "tags": [
@@ -963,7 +556,7 @@
       "compatibleVehicles": [
         "model_y"
       ],
-      "imageName": "p_my_front_mud_flaps.png",
+      "imageURL": "https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/CAR_ACCESSORIES/MODEL_Y/EXTERIOR/1634443-00-A_0_2000.jpg",
       "status": "active",
       "featured": false,
       "tags": [
@@ -984,7 +577,7 @@
       "compatibleVehicles": [
         "universal"
       ],
-      "imageName": "p_air_compressor_tyre_kit.png",
+      "imageURL": "https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/CAR_ACCESSORIES/MODEL_3/WHEELS_TIRES/1934882-00-A_00_2000.png",
       "status": "active",
       "featured": true,
       "fitNotes": "For Model S, X, 3 and Model Y Premium and Performance.",
@@ -1007,7 +600,7 @@
       "compatibleVehicles": [
         "universal"
       ],
-      "imageName": "p_hat_cybertruck_corduroy.png",
+      "imageURL": "https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/LIFESTYLE/HEADWEAR/HATS/2166154-00-A_01_2000.png",
       "status": "active",
       "featured": false,
       "tags": [
@@ -1029,7 +622,7 @@
       "compatibleVehicles": [
         "universal"
       ],
-      "imageName": "p_hat_tempest_rope_black.png",
+      "imageURL": "https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/LIFESTYLE/HEADWEAR/HATS/1860530-00-A_0_2000.jpg",
       "status": "active",
       "featured": false,
       "tags": [
@@ -1050,7 +643,7 @@
       "compatibleVehicles": [
         "universal"
       ],
-      "imageName": "p_hat_tempest_rope_olive.png",
+      "imageURL": "https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/LIFESTYLE/HEADWEAR/HATS/1860532-00-A_0_2000.jpg",
       "status": "active",
       "featured": false,
       "tags": [
@@ -1072,7 +665,7 @@
       "compatibleVehicles": [
         "universal"
       ],
-      "imageName": "p_hat_tempest_rope_grey.png",
+      "imageURL": "https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/LIFESTYLE/HEADWEAR/HATS/1860531-00-A_0_2000.jpg",
       "status": "active",
       "featured": false,
       "tags": [
@@ -1094,7 +687,7 @@
       "compatibleVehicles": [
         "universal"
       ],
-      "imageName": "p_hat_plaid_track_pack.png",
+      "imageURL": "https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/LIFESTYLE/HEADWEAR/HATS/1813371-00-B-Tesla-Plaid-Track-Pack-Hat-Front-001.jpg",
       "status": "active",
       "featured": false,
       "tags": [
@@ -1116,7 +709,7 @@
       "compatibleVehicles": [
         "universal"
       ],
-      "imageName": "p_hat_six_panel_wordmark.png",
+      "imageURL": "https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/studio/LIFESTYLE/HEADWEAR/HATS/1657915-00-A_0_2000.jpg",
       "status": "active",
       "featured": true,
       "tags": [
@@ -1137,7 +730,7 @@
       "compatibleVehicles": [
         "universal"
       ],
-      "imageName": "p_cup_on_the_road_white.png",
+      "imageURL": "https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/LIFESTYLE/ACCESSORIES_COLLECTIBLES/DRINKWARE/1859203-00-C-1.png",
       "status": "active",
       "featured": false,
       "tags": [
@@ -1158,7 +751,7 @@
       "compatibleVehicles": [
         "universal"
       ],
-      "imageName": "p_cup_on_the_road_black.png",
+      "imageURL": "https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/LIFESTYLE/ACCESSORIES_COLLECTIBLES/DRINKWARE/1859202-00-C-1.png",
       "status": "active",
       "featured": false,
       "tags": [
@@ -1179,7 +772,7 @@
       "compatibleVehicles": [
         "universal"
       ],
-      "imageName": "p_cup_on_the_road_grey.png",
+      "imageURL": "https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/LIFESTYLE/ACCESSORIES_COLLECTIBLES/DRINKWARE/2076490-00-A-1-01.png",
       "status": "active",
       "featured": false,
       "tags": [

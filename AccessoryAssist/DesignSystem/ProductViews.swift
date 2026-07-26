@@ -25,7 +25,7 @@ struct ProductRow: View {
         HStack(spacing: Spacing.m) {
             NavigationLink(value: product) {
                 HStack(spacing: Spacing.m) {
-                    CatalogueImageView(imageName: product.imageName, cornerRadius: Radius.control)
+                    CatalogueImageView(imageRef: product.imageRef, cornerRadius: Radius.control)
                         .frame(width: 68, height: 68)
 
                     VStack(alignment: .leading, spacing: Spacing.xxs) {
@@ -112,9 +112,11 @@ struct ProductCard: View {
         NavigationLink(value: product) {
             VStack(alignment: .leading, spacing: Spacing.xs) {
                 ZStack(alignment: .topTrailing) {
-                    CatalogueImageView(imageName: product.imageName)
-                        .aspectRatio(ImageRatio.product, contentMode: .fit)
-                        .frame(width: width)
+                    // An explicit height rather than an aspect ratio: the image
+                    // container is a Shape, which accepts whatever it is
+                    // offered, so a ratio alone leaves the height ambiguous.
+                    CatalogueImageView(imageRef: product.imageRef)
+                        .frame(width: width, height: (width / ImageRatio.product).rounded())
 
                     FavouriteButton(isFavourite: isFavourite, size: 36, action: onToggleFavourite)
                         .padding(Spacing.xxs)
@@ -154,9 +156,10 @@ struct BundleCard: View {
     var body: some View {
         NavigationLink(value: bundle) {
             VStack(alignment: .leading, spacing: Spacing.xs) {
-                CatalogueImageView(imageName: bundle.imageName)
-                    .aspectRatio(ImageRatio.hero, contentMode: .fit)
-                    .frame(width: width)
+                // Product photography is square, so a 16:9 crop would cut most
+                // of the item away. Bundles use the same ratio as products.
+                CatalogueImageView(imageRef: bundle.imageRef)
+                    .frame(width: width, height: (width / ImageRatio.product).rounded())
 
                 Text(bundle.name)
                     .font(TypeScale.productName)

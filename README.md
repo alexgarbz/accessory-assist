@@ -8,9 +8,9 @@ working offline.
 Built with SwiftUI. No third-party dependencies. iOS 17.0+.
 
 > **Unofficial prototype.** Not affiliated with, authorised by or endorsed by
-> Tesla, Inc. See [LICENSE](LICENSE) and
-> [Catalogue content](#catalogue-content) for exactly which data is real and
-> which is invented.
+> Tesla, Inc. Catalogue data is factual reference information observed on
+> Tesla's public store and is not authorised by them — see
+> [Catalogue content](#catalogue-content) and [LICENSE](LICENSE).
 
 ---
 
@@ -42,29 +42,31 @@ Offline and failed-sync states.
 
 ## Catalogue content
 
-The catalogue holds **52 products across 8 categories and 6 vehicle lines**, in
-**AUD**. It is a mix, and the difference matters if anyone is tempted to quote
-from it:
+**No sample or placeholder data.** Every entry is a real product observed on
+Tesla's public Australian store (`shop.tesla.com/en_au`) on **25 July 2026**:
 
-| Part of the catalogue | Provenance |
-| --- | --- |
-| 33 products — charging, Model Y and Model Y L interior/cargo, apparel, lifestyle | Names, **real Tesla part numbers** and AUD prices observed on Tesla's public Australian store (`shop.tesla.com/en_au`) on **25 July 2026** |
-| Home and Mobile Connector Bundle | Real bundle at its listed price (A$1,200) |
-| 19 remaining products (Model S/X liners, roof rack, aero covers, vehicle care, Cybertruck items) | **Invented** sample content |
-| All other bundle groupings and their prices | **Invented** merchandising, priced 10% under the sum of contents |
-| Every image in `remote-data/images/` | **Generated placeholders**, not Tesla photography |
+* **33 products** — charging, Model Y and Model Y L interior and cargo, apparel
+  and lifestyle — with the **real Tesla part number** and the real AUD price.
+* **1 bundle** — Home and Mobile Connector Bundle, at its listed A$1,200.
+* **Real product photography**, served from Tesla's own asset CDN through the
+  `imageURL` field. No imagery is copied into this repository; the app fetches
+  it and caches it on the device for offline use.
 
-The real entries are factual reference data, not authorised by Tesla, and go out
-of date the moment a price changes. **Confirm against Tesla's own systems before
+Colour and size variants are separate products, because each carries its own
+part number and therefore its own barcode — three Tempest Rope Hat colours,
+three On the Road Cup colours, two Model Y sunshade fitments.
+
+This is factual reference data. It is not authorised by Tesla and goes out of
+date the moment a price changes. **Confirm against Tesla's own systems before
 any operational use.**
 
 Four all-weather liner part numbers (`2048569-RH-A`, `-TS-A`, `-WL-A`, `-FT-A`)
 are taken from Tesla's asset references rather than a published SKU field; each
 carries a fitment note telling staff to confirm the part number at the counter.
 
-SKUs are the barcode payload, so both formats are accepted and validated: Tesla
-part numbers as printed on the item (`1529454-42-H`, `2048569-RH-A`) and the
-internal scheme used by the sample entries (`TSL-MY-INT-0142`).
+SKUs are the barcode payload, so the validated format accepts Tesla part numbers
+as printed on the item (`1529454-42-H`, `2048569-RH-A`) alongside a generic
+hyphenated scheme for any catalogue that needs one.
 
 ## Repository layout
 
@@ -79,22 +81,20 @@ accessory-assist/
 │   ├── Services/       Sync, cache, validation, cart, favourites, settings
 │   ├── DesignSystem/   Tokens and shared components
 │   ├── Utilities/      Code 128, formatting, haptics, brightness
-│   ├── Resources/      Assets + catalogue seeded at build time
-│   └── Tests/          74 unit tests
+│   ├── Resources/      App icon, colours, catalogue seeded at build time
+│   └── Tests/          83 unit tests
 ├── remote-data/        The remotely managed catalogue (the content layer)
 │   ├── version.json    Polled on launch; drives whether anything downloads
 │   ├── catalogue.json  Vehicles, categories, products
 │   ├── bundles.json
-│   ├── announcements.json
-│   └── images/
+│   └── announcements.json
 ├── documentation/
 │   ├── catalogue-schema.md      Every field and every rule
 │   ├── content-update-guide.md  How to publish without shipping an app
 │   └── architecture.md          How it fits together, and why
 ├── scripts/
-│   ├── validate_catalogue.py         Publishing gate, also run by CI
-│   ├── generate_placeholder_images.py
-│   └── sync_seed_resources.sh
+│   ├── validate_catalogue.py     Publishing gate, also run by CI
+│   └── sync_seed_resources.sh    Refresh the catalogue compiled into the app
 └── .github/workflows/               Catalogue validation + iOS tests
 ```
 
@@ -125,7 +125,7 @@ xcodebuild test -project AccessoryAssist.xcodeproj -scheme AccessoryAssist -dest
 | Branch | Serves | Contains |
 | --- | --- | --- |
 | `main` | **Production** catalogue | Approved products and pricing |
-| `staging` | **Staging** catalogue | Upcoming products, pricing and bundle tests |
+| `staging` | **Staging** catalogue | The lane for testing content changes before they reach staff |
 
 The app reads `main`. Staging is reachable only through the hidden developer
 setting, and any device on staging carries a permanent `STAGING CATALOGUE`
@@ -162,7 +162,7 @@ catalogue:
 * every active product has a unique id
 * every product has a valid, unique SKU (duplicates rejected)
 * every SKU is encodable as a Code 128 barcode
-* every referenced image exists
+* every image is a valid https URL, or a file that exists in `images/`
 * every bundle references products that exist and are sellable
 * prices are numeric and non-negative
 * compatible vehicles come from the approved published list
@@ -178,8 +178,8 @@ screen.
 
 Code 128 Subset B, generated on device from the SKU — never stored, never
 committed. Subset B covers printable ASCII, so the full alphanumeric-and-hyphen
-SKU format (`TSL-MY-INT-0142`) encodes without transformation, and Code 128 is
-read by default by mPOS scanners.
+SKU format — Tesla part numbers such as `2048569-RH-A` — encodes without
+transformation, and Code 128 is read by default by mPOS scanners.
 
 Bars are drawn with antialiasing disabled so module edges land on hard pixel
 boundaries, in fixed black-on-white regardless of appearance. Generated symbols
@@ -189,19 +189,24 @@ reads them as Code 128 at ~0.96 confidence.
 
 ---
 
-## Hosting note — read before deploying
+## Hosting
 
-This repository is private, so `raw.githubusercontent.com` will not serve the
-catalogue to the app anonymously. The app handles this correctly — it falls back
-to cached or bundled content and reports "Using Offline Data" — but it means the
-remote update flow will not visibly do anything until content is served from
-somewhere the app can reach.
+The repository is **public**, so the app reads the catalogue straight from
+`raw.githubusercontent.com` with no credential of any kind:
 
-**No GitHub token is embedded in the app, by design.** A token in an app binary
-is extractable by anyone holding the device.
+```
+https://raw.githubusercontent.com/alexgarbz/accessory-assist/main/remote-data/
+```
 
-For a working demonstration of the update flow, serve the content locally and
-point the app at it with the custom base URL:
+Build and run, and the catalogue and photography load. Nothing to configure.
+
+**No access token is embedded in the app, and none is needed.** A token compiled
+into an app binary is extractable by anyone holding the device, so the app never
+carries one. If this content ever moves behind authentication, the change is
+confined to the base URL and one request header in `CatalogueRemoteClient`.
+
+To serve content locally instead — useful when testing a change before pushing —
+run a server and point the app at it through the hidden developer setting:
 
 ```bash
 cd remote-data && python3 -m http.server 8000
@@ -209,9 +214,8 @@ cd remote-data && python3 -m http.server 8000
 
 Before real internal deployment, catalogue delivery needs an authenticated
 endpoint, per-device credentials from MDM or staff SSO, certificate pinning and
-content signing. This is set out in
-[architecture.md](documentation/architecture.md#authenticated-content-delivery);
-only the base URL and one request header change in app code.
+content signing. That is set out in
+[architecture.md](documentation/architecture.md#authenticated-content-delivery).
 
 ---
 
